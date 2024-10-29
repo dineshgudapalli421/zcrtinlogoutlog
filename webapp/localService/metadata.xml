@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZDM_METER_OUTLOG_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="MOInitialLoad" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Ptype"/>
+                </Key>
+                <Property Name="Ptype" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="Posting Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PtypeText" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="Posting Type Descr" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Action" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Action" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ActionText" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Action Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Refdoc" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Reference Doc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RefdocText" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Reference Doc. Descr" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bwart" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Movement Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Plant Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Umwrk" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Receiving plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Umname1" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Receiving Plant Descr" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lgort" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lgobe" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="SLoc. Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="NavStorageLoc" Relationship="ZDM_METER_OUTLOG_SRV.ToStorageLoc" FromRole="FromRole_ToStorageLoc" ToRole="ToRole_ToStorageLoc"/>
+            </EntityType>
+            <EntityType Name="StorageLoc" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Ptype"/>
+                </Key>
+                <Property Name="Ptype" Type="Edm.String" Nullable="false" MaxLength="7" sap:unicode="false" sap:label="Posting Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Umlgo" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Receiving SLoc." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Umlgobe" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="SLoc. Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="DeviceData" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Equnr"/>
+                </Key>
+                <Property Name="Equnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Equipment No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Lgort" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Storage Location" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bktxt" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Recepient" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bldat" Type="Edm.DateTime" Precision="8" sap:unicode="false" sap:label="Document Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Budat" Type="Edm.DateTime" Precision="8" sap:unicode="false" sap:label="Posting Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Maktx" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RecReadKwh" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KWH Rec. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdjRecReadKwh" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KWH Adj. Rec. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RecKwhFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="KWH Rec. Reading Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelReadKwh" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KWH Del. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdjDelReadKwh" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KWH Adj. Del. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelKwhFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="KWH Del. Reading FLag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RecReadKw" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KW Rec. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdjRecReadKw" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KW Adj. Rec. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RecKwFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="KW Rec. Reading Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelReadKw" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KW Del. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdjDelReadKw" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KW Adj. Del. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelKwFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="KW Del. Reading FLag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RecReadKva" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KVA Rec. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdjRecReadKva" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KVA Adj. Rec. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RecKvaFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="KVA Rec. Reading Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelReadKva" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KVA Del. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AdjDelReadKva" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="0" sap:unicode="false" sap:label="KVA Adj. Del. Reading" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelKvaFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="KVA Del. Reading FLag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Adattats" Type="Edm.DateTime" Precision="8" sap:unicode="false" sap:label="Read Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FormNo" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Form No" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Plombdat" Type="Edm.DateTime" Precision="8" sap:unicode="false" sap:label="Sealing date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OperationNo" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Operation Num." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Message type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="ToStorageLoc" sap:content-version="1" sap:label="Storage Locations">
+                <End Type="ZDM_METER_OUTLOG_SRV.MOInitialLoad" Multiplicity="1" Role="FromRole_ToStorageLoc"/>
+                <End Type="ZDM_METER_OUTLOG_SRV.StorageLoc" Multiplicity="*" Role="ToRole_ToStorageLoc"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ToStorageLoc">
+                        <PropertyRef Name="Ptype"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ToStorageLoc">
+                        <PropertyRef Name="Ptype"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZDM_METER_OUTLOG_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="MOInitialLoadSet" EntityType="ZDM_METER_OUTLOG_SRV.MOInitialLoad" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="StorageLocSet" EntityType="ZDM_METER_OUTLOG_SRV.StorageLoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DeviceDataSet" EntityType="ZDM_METER_OUTLOG_SRV.DeviceData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="ToStorageLocSet" Association="ZDM_METER_OUTLOG_SRV.ToStorageLoc" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MOInitialLoadSet" Role="FromRole_ToStorageLoc"/>
+                    <End EntitySet="StorageLocSet" Role="ToRole_ToStorageLoc"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <atom:link rel="self" href="http://sapsdvapp.aws.londonhydro.cloud:8000/sap/opu/odata/sap/ZDM_METER_OUTLOG_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sapsdvapp.aws.londonhydro.cloud:8000/sap/opu/odata/sap/ZDM_METER_OUTLOG_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

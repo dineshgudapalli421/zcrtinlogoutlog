@@ -1,0 +1,27 @@
+<mvc:View
+    controllerName="com.lh.sapui5.zcrtinlogoutlog.controller.selection"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page showHeader="false">
+        <content>
+            <GenericTile
+                id="idOutlog"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="Create Outlog"
+                subheader="Outlog"
+                press="onPressOutlog"
+                frameType="TwoByHalf"
+            />
+            <GenericTile
+                id="idInlog"
+                class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                header="Create Inlog"
+                subheader="Inlog"
+                press="onPressInlog"
+                frameType="TwoByHalf"
+            />
+        </content>
+    </Page>
+</mvc:View>

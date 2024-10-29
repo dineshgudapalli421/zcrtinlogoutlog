@@ -1,0 +1,261 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants"
+>
+    <f:DynamicPageHeader binding="{OutLogModel>/InitialLoad}">
+        <f:content>
+            <fb:FilterBar
+                id="filterbar"
+                persistencyKey="myPersKey"
+                useToolbar="false"
+                search=".onSearch"
+                filterChange=".onFilterChange"
+                afterVariantLoad=".onAfterVariantLoad"
+            >
+                <fb:filterGroupItems>
+                    <fb:FilterGroupItem
+                        name="Action"
+                        label="Action"
+                        groupName="Group2"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <Input
+                                editable="false"
+                                value="{OutLogModel>ActionText}"
+                            />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Ref"
+                        label="Ref. Doc"
+                        groupName="Group2"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <Input
+                                editable="false"
+                                placeholder="from"
+                                value="{OutLogModel>RefdocText}"
+                            />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Posting"
+                        label="Posting Type"
+                        groupName="Group2"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <Input
+                                editable="false"
+                                placeholder="from"
+                                value="{OutLogModel>PtypeText}"
+                            />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Mvt"
+                        label="Mvt Type"
+                        groupName="Group2"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <Input
+                                editable="false"
+                                placeholder="from"
+                                value="{OutLogModel>Bwart}"
+                            />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Name"
+                        label="Equipment From"
+                        groupName="Group1"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <Input value="{OutLogModel>EquipFrom}" maxLength="18" type="Number"/>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Name1"
+                        label="Equipment To"
+                        groupName="Group1"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <Input value="{OutLogModel>EquipFrom}" maxLength="18" type="Number"/>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Name2"
+                        label="Plant"
+                        groupName="Group1"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <Input
+                                value="{OutLogModel>Werks}"
+                                description="{OutLogModel>Name1}"
+                                editable="false"
+                            />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Name3"
+                        label="Stor. Loc"
+                        groupName="Group1"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <Input
+                                placeholder="from"
+                                value="{OutLogModel>Lgort}"
+                                description="{OutLogModel>Lgobe}"
+                                editable="false"
+                            />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Name4"
+                        label="Stor. Loc"
+                        groupName="Group1"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <!-- <Input
+                                required="true"
+                                placeholder="To"
+                                value="{OutLogModel>EquipFrom}"
+                                description="{OutLogModel>Umlgobe}"
+                            /> -->
+                            <ComboBox
+                                items="{OutLogModel>NavStorageLoc/results}" required="true" selectedKey="{OutLogModel>Umlgo}" 
+                            >
+                                <core:Item
+                                    key="{OutLogModel>Umlgo}"
+                                    text="{OutLogModel>Umlgo} - {OutLogModel>Umlgobe}"
+                                />
+                            </ComboBox>
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Name5"
+                        label="Recipient"
+                        groupName="Group1"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <Input value="{OutLogModel>EquipFrom}" />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Name6"
+                        label="Document Date"
+                        groupName="Group1"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <DatePicker
+                                value="{OutLogModel>/oCurrentDate}"
+                                valueFormat="MM-dd-yyyy"
+                                displayFormat="MM-dd-yyyy"
+                                change="handleChangeDocDate"
+                                class="sapUiSmallMarginBottom"
+                            />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                    <fb:FilterGroupItem
+                        name="Name7"
+                        label="Posting Date"
+                        groupName="Group1"
+                        visibleInFilterBar="true"
+                    >
+                        <fb:control>
+                            <DatePicker
+                                required="true"
+                                valueFormat="MMddyyyy"
+                                displayFormat="MM-dd-yyyy"
+                                minDate="{OutLogModel>/oMinPostingDate}"
+                                change="handleChangePostingDate"
+                                class="sapUiSmallMarginBottom"
+                                value="{OutLogModel>Budat}"
+                            />
+                        </fb:control>
+                    </fb:FilterGroupItem>
+                </fb:filterGroupItems>
+            </fb:FilterBar>
+        </f:content>
+    </f:DynamicPageHeader>
+    <!-- <f:SimpleForm
+        id="SimpleFormDisplay354"
+        editable="true"
+        layout="ResponsiveGridLayout"
+        labelSpanXL="2"
+        labelSpanL="2"
+        labelSpanM="2"
+        labelSpanS="12"
+        adjustLabelSpan="false"
+        emptySpanXL="4"
+        emptySpanL="4"
+        emptySpanM="4"
+        emptySpanS="0"
+        columnsXL="1"
+        columnsL="1"
+        columnsM="1"
+        singleContainerFullSize="false"
+        binding="{OutLogModel>/InitialLoad}"
+    >
+        <f:content>
+            <Label text="Equipment" />
+            <Input
+                placeholder="from"
+                value="{OutLogModel>EquipFrom}"
+            />
+            <Input
+                placeholder="to"
+                value="{OutLogModel>EquipTo}"
+            />
+            <Label text="Plant" />
+            <Input
+                placeholder="from"
+                value="{OutLogModel>Werks}"
+            />
+            <Input
+                placeholder="to"
+                value="{OutLogModel>Werks}"
+            />
+            <Label text="Stor Loc." />
+            <Input
+                placeholder="from"
+                value="{OutLogModel>Lgort}"
+            />
+            <Input
+                placeholder="to"
+                value="{OutLogModel>StorLocTo}"
+            />
+            <Label text="Recipient" />
+            <Input value="{OutLogModel>sRecipient}" />
+            <Label text="Document Date" />
+            <DatePicker
+                value="{OutLogModel>/oCurrentDate}"
+                valueFormat="MM-dd-yyyy"
+                displayFormat="MM-dd-yyyy"
+                change="handleChangeDocDate"
+                class="sapUiSmallMarginBottom"
+            />
+            <Label text="Posting Date" />
+            <DatePicker
+                displayFormat="MM-dd-yyyy"
+                minDate="{OutLogModel>/oMinPostingDate}"
+                change="handleChangePostingDate"
+                class="sapUiSmallMarginBottom"
+            />
+        </f:content>
+    </f:SimpleForm> -->
+</core:FragmentDefinition>
