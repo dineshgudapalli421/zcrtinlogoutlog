@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+>
+    <Dialog id="mainDialog" contentHeight="120px" contentWidth="100px" >
+        <content>
+            <MessageView
+                items="{OutLogModel>/Messages}"
+            >
+                <MessageItem
+                    type="Error"
+                    title="Test"
+                    subtitle="{OutLogModel>additionalText}"
+                    description="{OutLogModel>description}"
+                />
+            </MessageView>
+        </content>
+        <footer>
+            <Toolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button
+                        type="Accept"
+                        text="Save"
+                        press="._generateInvalidUserInput"
+                    />
+                    <Button
+                        id="Reject"
+                        text="Reject"
+                        type="Reject"
+                        press="._closeDialog"
+                        ariaHasPopup="Dialog"
+                    />
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+</core:FragmentDefinition>

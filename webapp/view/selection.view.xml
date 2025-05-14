@@ -9,19 +9,27 @@
             <GenericTile
                 id="idOutlog"
                 class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                header="Create Outlog"
-                subheader="Outlog"
+                header="{i18n>lhoutlogTiletitleTxt}"
+                subheader="{i18n>lhInlogOutlogtileSubHeading}"
                 press="onPressOutlog"
-                frameType="TwoByHalf"
-            />
+                frameType="OneByOne"
+            >
+                <TileContent>
+                    <ImageContent src="sap-icon://inspect" />
+                </TileContent>
+            </GenericTile>
             <GenericTile
                 id="idInlog"
                 class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                header="Create Inlog"
-                subheader="Inlog"
+                header="{i18n>lhinlogTiletitleTxt}"
+                subheader="{i18n>lhInlogOutlogtileSubHeading}"
                 press="onPressInlog"
-                frameType="TwoByHalf"
-            />
+                frameType="OneByOne"
+            >
+            <TileContent>
+                    <ImageContent src="sap-icon://add-equipment" />
+                </TileContent>
+            </GenericTile>
         </content>
     </Page>
 </mvc:View>

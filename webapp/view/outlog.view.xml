@@ -6,32 +6,32 @@
     xmlns:f="sap.f"
     xmlns="sap.m"
 >
-    <f:DynamicPage headerExpanded="{/headerExpanded}">
+    <f:DynamicPage headerExpanded="{/headerExpanded}" showFooter="true" fitContent="true">
+    <f:title>
+				<f:DynamicPageTitle>
+					<f:heading>
+						<Title text="{i18n>createOutlogTitle}"/>
+					</f:heading>
+				</f:DynamicPageTitle>
+			</f:title>
         <f:header>
             <core:Fragment
                 fragmentName="com.lh.sapui5.zcrtinlogoutlog.fragment.outlogHeader"
                 type="XML"
             />
         </f:header>
-        <!-- <f:content /> -->
-    </f:DynamicPage>
-    <!-- <Page
-        showHeader="false"
-        showFooter="true"
-    >
-        <content>
-            <core:Fragment
-                fragmentName="com.lh.sapui5.zcrtinlogoutlog.fragment.OutlogDefaulted"
-                type="XML"
-            />
-            <core:Fragment
-                fragmentName="com.lh.sapui5.zcrtinlogoutlog.fragment.outlogHeader"
-                type="XML"
-            />
-            <core:Fragment
+        <f:content>
+        <core:Fragment
                 fragmentName="com.lh.sapui5.zcrtinlogoutlog.fragment.outlogItem"
                 type="XML"
             />
-        </content>
-    </Page> -->
+        </f:content>
+        <f:footer>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button id="idAcceptBtn" type="Accept" text="{i18n>lhoutlogPostBtnTxt}" press="onPressPostButton"/>
+					<Button id="idCancelBtn" type="Reject" text="{i18n>lhoutlogCancelBtnTxt}" press="onPressCancelButton"/>
+				</OverflowToolbar>
+			</f:footer>
+    </f:DynamicPage>
 </mvc:View>

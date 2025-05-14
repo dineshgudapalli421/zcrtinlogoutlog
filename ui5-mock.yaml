@@ -1,5 +1,3 @@
-# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
-
 specVersion: "3.1"
 metadata:
   name: com.lh.sapui5.zcrtinlogoutlog
@@ -9,7 +7,7 @@ server:
     - name: fiori-tools-proxy
       afterMiddleware: compression
       configuration:
-        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ignoreCertError: false
         ui5:
           path:
             - /resources
@@ -18,7 +16,7 @@ server:
         backend:
           - path: /sap
             url: http://sapsdvapp.aws.londonhydro.cloud:8000
-            client: '200'
+            client: "200"
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:
@@ -35,3 +33,7 @@ server:
             mockdataPath: ./webapp/localService/data
             generateMockData: true
         annotations: []
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.lh.sapui5.zcrtinlogoutlog

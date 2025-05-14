@@ -1,31 +1,414 @@
 <core:FragmentDefinition
-    xmlns="sap.m"
-    xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:core="sap.ui.core"
+    xmlns="sap.ui.table"
+    xmlns:plugins="sap.ui.table.plugins"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:m="sap.m"
 >
-    <smartTable:SmartTable
-        id="LineItemsSmartTable"
-        entitySet="LineItemsSet"
-        smartFilterId="smartFilterBar"
-        tableType="Table"
-        useExportToExcel="true"
-        beforeExport="onBeforeExport"
-        useVariantManagement="true"
-        useTablePersonalisation="true"
-        header="Line Items"
-        showRowCount="true"
-        persistencyKey="SmartTableAnalytical_Explored"
-        enableAutoBinding="true"
-        class="sapUiResponsiveContentPadding"
-        enableAutoColumnWidth="true"
-        editTogglable="true"
+    <Table
+        id="idDeviceDataSetTable"
+        rows="{ path: 'OutLogModel>/DeviceDataSet'}"
+        rowMode="Auto"
+        enableBusyIndicator="true"
+        fixedColumnCount="1"
+        ariaLabelledBy="title"
     >
-        <!-- layout data used to make the table growing but the filter bar fixed -->
-        <smartTable:layoutData>
-            <FlexItemData
-                growFactor="1"
-                baseSize="0%"
+        <extension>
+            <m:OverflowToolbar style="Clear">
+                <m:Title
+                    id="title"
+                    text="Products"
+                />
+                <m:ToolbarSpacer />
+                <m:Button
+                    visible="true"
+                    icon="sap-icon://delete"
+                    tooltip="{i18n>DelLineItem}"
+                    press="onHandleDelete"
+                />
+            </m:OverflowToolbar>
+        </extension>
+        <rowSettingsTemplate>
+            <RowSettings
+                highlight="{
+                                path: 'OutLogModel>Type',
+                                formatter :'.formatter.fnMessageType'
+                            }"
+                highlightText="{OutLogModel>Message}"
             />
-        </smartTable:layoutData>
-    </smartTable:SmartTable>
+        </rowSettingsTemplate>
+        <columns>
+            <Column
+                sortProperty="Name"
+                filterProperty="Name"
+                autoResizable="true"
+                width="11rem"
+                hAlign="Right"
+            >
+                <m:Label text="{/#DeviceData/SerialNumber/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>SerialNumber}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                sortProperty="ProductID"
+                filterProperty="ProductID"
+                autoResizable="true"
+                width="6rem"
+                hAlign="Right"
+            >
+                <m:Label text="{/#DeviceData/Plant/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>Plant}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                sortProperty="Category"
+                filterProperty="Category"
+                autoResizable="true"
+                width="11rem"
+                hAlign="Left"
+            >
+                <m:Label text="{/#DeviceData/StorageLocation/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>StorageLocation}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Left"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/Recipient/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>Recipient}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/DocumentDate/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{
+						'path':'OutLogModel>DocumentDate',
+						'type':'sap.ui.model.type.Date',
+						'formatOptions': {
+							'pattern': 'MM-dd-yyyy'
+						}}"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/PostingDate/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{
+						'path':'OutLogModel>PostingDate',
+						'type':'sap.ui.model.type.Date',
+						'formatOptions': {
+							'pattern': 'MM-dd-yyyy'
+						}}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/MaterialNumber/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>MaterialNumber}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/MaterialDescription/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>MaterialDescription}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/RecvReadKwh/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>RecvReadKwh}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="7rem"
+            >
+                <m:Label text="{/#DeviceData/AdjRecvReadKwh/@sap:label}" />
+                <template>
+                    <m:Input
+                        type="Number"
+                        textAlign="End"
+                        value="{OutLogModel>AdjRecvReadKwh}"
+                        editable="{= ${OutLogModel>RecvKwhFlag} === 'X'}"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/DelvReadKwh/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>DelvReadKwh}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="7rem"
+            >
+                <m:Label text="{/#DeviceData/AdjDelvReadKwh/@sap:label}" />
+                <template>
+                    <m:Input
+                        type="Number"
+                        textAlign="End"
+                        value="{OutLogModel>AdjDelvReadKwh}"
+                        editable="{= ${OutLogModel>DelvKwhFlag} === 'X' &amp;&amp; ${OutLogModel>Type} !== 'E'}"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/RecvReadKw/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>RecvReadKw}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="7rem"
+            >
+                <m:Label text="{/#DeviceData/AdjRecvReadKw/@sap:label}" />
+                <template>
+                    <m:Input
+                        type="Number"
+                        textAlign="End"
+                        value="{OutLogModel>AdjRecvReadKw}"
+                        editable="{= ${OutLogModel>RecvKwFlag} === 'X'}"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/DelvReadKw/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>DelvReadKw}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="7rem"
+            >
+                <m:Label text="{/#DeviceData/AdjDelvReadKw/@sap:label}" />
+                <template>
+                    <m:Input
+                        type="Number"
+                        textAlign="End"
+                        value="{OutLogModel>AdjDelvReadKw}"
+                        editable="{= ${OutLogModel>DelvKwFlag} === 'X'}"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/RecvReadKva/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>RecvReadKva}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="7rem"
+            >
+                <m:Label text="{/#DeviceData/AdjRecvReadKva/@sap:label}" />
+                <template>
+                    <m:Input
+                        type="Number"
+                        textAlign="End"
+                        value="{OutLogModel>AdjRecvReadKva}"
+                        editable="{= ${OutLogModel>RecvKvaFlag} === 'X'}"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/DelvReadKva/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>DelvReadKva}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="7rem"
+            >
+                <m:Label text="{/#DeviceData/AdjDelvReadKva/@sap:label}" />
+                <template>
+                    <m:Input
+                        type="Number"
+                        textAlign="End"
+                        value="{OutLogModel>AdjDelvReadKva}"
+                        editable="{= ${OutLogModel>DelvKvaFlag} === 'X'}"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/ReadDate/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{
+						'path':'OutLogModel>ReadDate',
+						'type':'sap.ui.model.type.Date',
+						'formatOptions': {
+							'pattern': 'MM-dd-yyyy'
+						}}"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Center"
+                autoResizable="true"
+                width="8rem"
+            >
+                <m:Label text="{/#DeviceData/FormNo/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>FormNo}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                autoResizable="true"
+                width="6rem"
+            >
+                <m:Label text="{/#DeviceData/SealDate/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{'path':'OutLogModel>SealDate', 'type': 'sap.ui.model.type.Date', 'formatOptions': {
+							'pattern': 'MM-dd-yyyy'
+						}}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="End"
+                autoResizable="true"
+                width="9rem"
+            >
+                <m:Label text="{/#DeviceData/OperationNo/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>OperationNo}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Start"
+                autoResizable="true"
+                width="20rem"
+            >
+                <m:Label text="{/#DeviceData/Message/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>Message}"
+                        wrapping="true"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Center"
+                autoResizable="true"
+                width="8rem"
+            >
+                <m:Label text="{/#DeviceData/Type/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{OutLogModel>Type}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+        </columns>
+    </Table>
 </core:FragmentDefinition>

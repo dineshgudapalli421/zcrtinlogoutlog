@@ -1,0 +1,66 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+>
+    <Popover
+        id="myPopover"
+        showHeader="false"
+        contentWidth="450px"
+        contentHeight="400px"
+        placement="Bottom"
+        ariaLabelledBy="master-title"
+    >
+        <Page
+            id="idSoActivity"
+            class="sapUiResponsivePadding--header"
+            title="So Activities"
+        >
+            <Table
+                id="idProductsTable"
+                inset="false"
+                items="{InLogModel>/InitialLoad/MeterResults/NavSOHistory/results}"
+            >
+                <columns>
+                    <Column
+                        width="7em"
+                        hAlign="Center"
+                    >
+                        <Text text="{i18n>lhinlogOrderNoLabel}" />
+                    </Column>
+                    <Column
+                        width="6em"
+                        hAlign="Center"
+                    >
+                        <Text text="{i18n>lhinlogOperationLabel}" />
+                    </Column>
+                    <Column
+                        demandPopin="true"
+                        hAlign="Left"
+                    >
+                        <Text text="{i18n>lhinlogActivityTxtLabel}" />
+                    </Column>
+                    <Column
+                        demandPopin="true"
+                        hAlign="Left"
+                    >
+                        <Text text="{i18n>lhinlogCompletionDtabel}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem vAlign="Middle">
+                        <cells>
+                            <Text text="{InLogModel>OrderNumber}" />
+                            <Text text="{InLogModel>Operation}" />
+                            <Text text="{InLogModel>ActivityName}" />
+                            <Text
+                                text="{path :'InLogModel>OrderCompleteDate', type: 'sap.ca.ui.model.type.Date', formatOptions: {UTC: false} }"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </Page>
+    </Popover>
+</core:FragmentDefinition>

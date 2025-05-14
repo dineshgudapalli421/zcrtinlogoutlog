@@ -1,0 +1,166 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    xmlns:plugins="sap.ui.table.plugins"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:m="sap.m"
+>
+    <Table id="idItemTableMobile"
+        items="{path: 'InLogModel>/ItemDataSet'}"
+        fixedLayout="Strict"
+        growing="true"
+        popinLayout="Block"
+        autoPopinMode="true"
+        contextualWidth="Auto"
+        mode="MultiSelect"
+        visible="{= ${device>/system/desktop} === false}"
+        inset="false"
+    >
+        <headerToolbar>
+            <OverflowToolbar design="Auto">
+                <Button
+                    visible="true"
+                    icon="sap-icon://delete"
+                    tooltip="{i18n>DelLineItem}"
+                    press="onHandleDelete"
+                />
+            </OverflowToolbar>
+        </headerToolbar>
+        <columns>
+            <Column headerMenu="menu" importance="High">
+                <header>
+                    <Text text="Meter Number" />
+                </header>
+            </Column>
+            <Column headerMenu="menu" importance="High">
+                <Text text="Disposition" />
+            </Column>
+            <Column headerMenu="menu" importance="High">
+                <Text text="Dest Stor Loc" />
+            </Column>
+            <Column
+                headerMenu="menu"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="Kvah Delvr" />
+            </Column>
+            <Column
+                hAlign="End"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="Kvar Delvr" />
+            </Column>
+            <Column
+                hAlign="End"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="Kw Delvr" />
+            </Column>
+            <Column
+                hAlign="End"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="status" />
+            </Column>
+            <Column
+                hAlign="End"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="MR Validity" />
+            </Column>
+            <Column
+                hAlign="End"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="Kwh Received" />
+            </Column>
+            <Column
+                hAlign="End"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="Kw Received" />
+            </Column>
+            <Column
+                hAlign="End"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="Kva Received" />
+            </Column>
+            <Column
+                hAlign="End"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="Kvar Received" />
+            </Column>
+            <Column
+                hAlign="End"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="Kvarh Received" />
+            </Column>
+            <Column
+                hAlign="End"
+                headerMenu="menu"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="ReturnMessage" />
+            </Column>
+            <Column
+                hAlign="End"
+                headerMenu="menu"
+                popinDisplay="Inline"
+                demandPopin="true"
+                autoPopinWidth="8"
+            >
+                <Text text="ReturnType" />
+            </Column>
+        </columns>
+
+        <items>
+            <ColumnListItem>
+                <Label text="{InLogModel>SerialNumber}" design="Bold" />
+                <Label text="{InLogModel>Disposition}" design="Bold" />
+                <Label text="{InLogModel>DestinationStorageLocation}" design="Bold" />
+                <Label text="{InLogModel>DelvReadKva}"  design="Bold"/>
+                <Label text="{InLogModel>DelvReadKvah}" design="Bold"/>
+                <Label text="{InLogModel>DelvReadKvar}" design="Bold"/>
+                <Label text="{InLogModel>DelvReadKw}" design="Bold"/>
+                <Label text="{InLogModel>DelvReadKwh}" design="Bold"/>
+                <Label text="{InLogModel>MeterStatus}" design="Bold" />
+                <Label text="{InLogModel>MeterReadValidity}" design="Bold"/>
+                <Label text="{InLogModel>RecvReadKwh}" design="Bold"/>
+                <Label text="{InLogModel>RecvReadKw}" design="Bold"/>
+                <Label text="{InLogModel>RecvReadKva}" design="Bold"/>
+                <Label text="{InLogModel>RecvReadKvar}" design="Bold"/>
+                <Label text="{InLogModel>RecvReadKvah}" design="Bold"/>
+                <Label text="{InLogModel>RecvReadKvarh}" design="Bold"/>
+                <Label text="{InLogModel>Message}" design="Bold"/>
+                <Label text="{InLogModel>Type}" design="Bold"/>
+            </ColumnListItem>
+        </items>
+    </Table>
+</core:FragmentDefinition>

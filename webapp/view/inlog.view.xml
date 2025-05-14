@@ -1,0 +1,63 @@
+<mvc:View
+    controllerName="com.lh.sapui5.zcrtinlogoutlog.controller.inlog"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns="sap.m"
+>
+    <f:DynamicPage
+        headerExpanded="{/headerExpanded}"
+        showFooter="true"
+        fitContent="true"
+    >
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <Title text="{i18n>createInlogTitle}" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <core:Fragment
+                fragmentName="com.lh.sapui5.zcrtinlogoutlog.fragment.inlogHeader"
+                type="XML"
+            />
+        </f:header>
+        <f:content>
+            <VBox>
+                <core:Fragment
+                    fragmentName="com.lh.sapui5.zcrtinlogoutlog.fragment.inlogItem"
+                    type="XML"
+                />
+                <core:Fragment
+                    fragmentName="com.lh.sapui5.zcrtinlogoutlog.fragment.inlogItemMobView"
+                    type="XML"
+                />
+            </VBox>
+        </f:content>
+        <!-- <f:content>
+        fragmentName="com.lh.sapui5.zcrtinlogoutlog.fragment.inlogItem"
+                type="XML"
+            <core:Fragment
+                fragmentName="com.lh.sapui5.zcrtinlogoutlog.fragment.inlogItemMobView"
+                type="XML"
+            />
+        </f:content> -->
+        <f:footer>
+            <OverflowToolbar>
+                <ToolbarSpacer />
+                <Button
+                    type="Accept"
+                    text="Post"
+                    press="onPressPostButton"
+                />
+                <Button
+                    type="Reject"
+                    text="Cancel"
+                    press="onPressCancelButton"
+                />
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

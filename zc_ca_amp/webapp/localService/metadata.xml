@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="http://sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZC_CA_AMP_CON_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZC_CA_AMP_CONType" sap:label="Consumption View for AMP report" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="rpnum"/>
+                </Key>
+                <Property Name="rpnum" Type="Edm.String" Nullable="false" MaxLength="12" sap:display-format="UpperCase" sap:label="Install.Plan No." sap:quickinfo="Installment plan number in Contract A/R &amp; A/P"/>
+                <Property Name="vkont" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:required-in-filter="false" sap:label="Contract Account" sap:quickinfo="Contract Account Number"/>
+                <Property Name="Fin_Bill" Type="Edm.String" MaxLength="3" sap:filter-restriction="single-value" sap:required-in-filter="false"/>
+                <Property Name="rpcat" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:required-in-filter="false" sap:label="Installmt Plan Cat." sap:quickinfo="Installment plan category"/>
+                <Property Name="rpctxt" Type="Edm.String" MaxLength="40" sap:label="Instlmt plan cat." sap:quickinfo="Name of installment plan category"/>
+                <Property Name="ninst" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="No. of Installments" sap:quickinfo="Number of Installments"/>
+                <Property Name="Lo_In_Sts" Type="Edm.String" MaxLength="3"/>
+                <Property Name="deagd" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Deactivation Reason"/>
+                <Property Name="reas_txt" Type="Edm.String" MaxLength="30" sap:label="Deactivation Reason"/>
+                <Property Name="waers" Type="Edm.String" MaxLength="5" sap:display-format="UpperCase" sap:label="Currency" sap:quickinfo="Currency Key" sap:semantics="currency-code"/>
+                <Property Name="deoff" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="waers" sap:label="Open deact. amount" sap:quickinfo="Open amount at time of deactivation"/>
+                <Property Name="sttdt" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Start date inst.plan" sap:quickinfo="Start date of installment plan"/>
+                <Property Name="enddt" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Instal.plan end date" sap:quickinfo="Installment plan end date"/>
+                <Property Name="deadt" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Deactivation Date" sap:quickinfo="Deactivation Date of Installment Plan"/>
+                <Property Name="AMP_Rej_Date" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:required-in-filter="false" sap:label="Valid from" sap:quickinfo="Validity Start for ID Number"/>
+                <Property Name="NxtEligDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Next Eligibility Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InsPlanSts" Type="Edm.String" MaxLength="12" sap:label="Installment Plan Status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CustClass" Type="Edm.String" MaxLength="12" sap:label="Customer Class" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InstPlnAmt" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="waers" sap:label="Installment Plan Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OpenAmt" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="waers" sap:label="Open Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DueAmt" Type="Edm.Decimal" Precision="14" Scale="3" sap:unit="waers" sap:label="Due Amount" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="partner" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Business Partner" sap:quickinfo="Business Partner Number"/>
+                <Property Name="type" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="BP Category" sap:quickinfo="Business Partner Category"/>
+                <Property Name="name" Type="Edm.String" MaxLength="160"/>
+                <Property Name="anlage" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Installation"/>
+                <Property Name="sparte" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:label="Division"/>
+                <Property Name="vertrag" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Contract"/>
+                <Property Name="Latest_rpnum" Type="Edm.String" MaxLength="12"/>
+                <Property Name="max_enddt" Type="Edm.DateTime" Precision="0" sap:display-format="Date"/>
+                <Property Name="tariftyp" Type="Edm.String" MaxLength="80"/>
+                <Property Name="aklasse" Type="Edm.String" MaxLength="80"/>
+            </EntityType>
+            <EntityContainer Name="ZC_CA_AMP_CON_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZC_CA_AMP_CON" EntityType="ZC_CA_AMP_CON_CDS.ZC_CA_AMP_CONType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <Annotations Target="ZC_CA_AMP_CON_CDS.ZC_CA_AMP_CON_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+            </Annotations>
+            <Annotations Target="ZC_CA_AMP_CON_CDS.ZC_CA_AMP_CON_CDS_Entities/ZC_CA_AMP_CON" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="FilterExpressionRestrictions">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="Fin_Bill"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SingleValue"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>NxtEligDate</PropertyPath>
+                                <PropertyPath>InsPlanSts</PropertyPath>
+                                <PropertyPath>CustClass</PropertyPath>
+                                <PropertyPath>InstPlnAmt</PropertyPath>
+                                <PropertyPath>OpenAmt</PropertyPath>
+                                <PropertyPath>DueAmt</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>NxtEligDate</PropertyPath>
+                                <PropertyPath>InsPlanSts</PropertyPath>
+                                <PropertyPath>CustClass</PropertyPath>
+                                <PropertyPath>InstPlnAmt</PropertyPath>
+                                <PropertyPath>OpenAmt</PropertyPath>
+                                <PropertyPath>DueAmt</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://sapsdvapp.aws.londonhydro.cloud:8000/sap/opu/odata/sap/ZC_CA_AMP_CON_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://sapsdvapp.aws.londonhydro.cloud:8000/sap/opu/odata/sap/ZC_CA_AMP_CON_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

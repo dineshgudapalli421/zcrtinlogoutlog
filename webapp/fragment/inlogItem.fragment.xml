@@ -1,0 +1,248 @@
+<core:FragmentDefinition
+    xmlns:core="sap.ui.core"
+    xmlns="sap.ui.table"
+    xmlns:plugins="sap.ui.table.plugins"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:u="sap.ui.unified"
+    xmlns:c="sap.ui.core"
+    xmlns:m="sap.m"
+>
+    <Table
+        id="idInlogItemDataSetTable"
+        rows="{ path: 'InLogModel>/ItemDataSet'}"
+        rowMode="Auto"
+        enableBusyIndicator="true"
+        fixedColumnCount="1"
+        ariaLabelledBy="title"
+        visible="{device>/system/desktop}"
+    >
+        <extension>
+            <m:OverflowToolbar style="Clear">
+                <m:ToolbarSpacer />
+                <m:Button
+                    visible="true"
+                    icon="sap-icon://delete"
+                    tooltip="{i18n>DelLineItem}"
+                    press="onHandleDelete"
+                />
+            </m:OverflowToolbar>
+        </extension>
+        <rowSettingsTemplate>
+            <RowSettings
+                highlight="{
+                                path: 'InLogModel>ReturnType',
+                                formatter :'.formatter.fnMessageType'
+                            }"
+                highlightText="{InLogModel>Message}"
+            />
+        </rowSettingsTemplate>
+        <columns>
+            <Column
+                sortProperty="Name"
+                filterProperty="Name"
+                autoResizable="true"
+                width="9rem"
+                hAlign="Begin"
+            >
+                <m:Label text="{i18n>lhinlogMetNumLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>SerialNumber}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                autoResizable="true"
+                width="9rem"
+                hAlign="Begin"
+            >
+                <m:Label text="{i18n>lhinlogDispositionLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>Disposition}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                sortProperty="Category"
+                filterProperty="Category"
+                autoResizable="true"
+                width="9rem"
+                hAlign="Begin"
+            >
+                <m:Label text="{i18n>lhinlogDestStorLocLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>DestinationStorageLocation}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                width="5rem"
+            >
+                <m:Label text="{i18n>lhinlogKvaDelvrLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>DelvReadKva}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                width="5rem"
+            >
+                <m:Label text="{i18n>lhinlogKvahDelvrLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>DelvReadKvah}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                width="5rem"
+            >
+                <m:Label text="{i18n>lhinlogKvarDelvrLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>DelvReadKvar}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+               hAlign="Right"
+                width="5rem"
+            >
+                <m:Label text="{i18n>lhinlogKwDelvrLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>DelvReadKw}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                width="5rem"
+            >
+                <m:Label text="{i18n>lhinlogKwhDelvrLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>DelvReadKwh}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Left"
+                width="8rem"
+            >
+                <m:Label text="{i18n>lhinlogMeterStatusLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>MeterStatus}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Left"
+                width="8rem"
+            >
+                <m:Label text="{i18n>lhinlogMRValidityLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>MeterReadValidity}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                width="7rem"
+            >
+                <m:Label text="{i18n>lhinlogRecvReadKwhLabel}" />
+                <template>
+                    <m:Text
+                        textAlign="End"
+                        text="{InLogModel>RecvReadKwh}"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                width="6rem"
+            >
+                <m:Label text="{i18n>lhinlogRecvReadKwLabel}" />
+                <template>
+                    <m:Text text="{InLogModel>RecvReadKw}" />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                width="6rem"
+            >
+                <m:Label text="{i18n>lhinlogRecvReadKvaLabel}" />
+                <template>
+                    <m:Text text="{InLogModel>RecvReadKva}" />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                width="6rem"
+            >
+                <m:Label text="{i18n>lhinlogRecvReadKvarLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>RecvReadKvar}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                width="6rem"
+            >
+                <m:Label text="{i18n>lhinlogRecvReadKvahLabel}" />
+                <template>
+                    <m:Text text="{InLogModel>RecvReadKvah}" />
+                </template>
+            </Column>
+            <Column
+                hAlign="Right"
+                width="6rem"
+            >
+                <m:Label text="{i18n>lhinlogRecvReadKvarhLabel}" />
+                <template>
+                    <m:Text text="{InLogModel>RecvReadKvarh}" />
+                </template>
+            </Column>
+            <Column
+                hAlign="Left"
+                width="13rem"
+            >
+                <m:Label text="{i18n>lhinlogRetMessageLabel}" />
+                <template>
+                    <m:Text text="{InLogModel>ReturnMessage}" />
+                </template>
+            </Column>
+            <Column
+                hAlign="Center"
+                autoResizable="true"
+                width="8rem"
+            >
+                <m:Label text="{i18n>lhinlogRetTypeLabel}" />
+                <template>
+                    <m:Text text="{InLogModel>ReturnType}" />
+                </template>
+            </Column>
+        </columns>
+    </Table>
+</core:FragmentDefinition>

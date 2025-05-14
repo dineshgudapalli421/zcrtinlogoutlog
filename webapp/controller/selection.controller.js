@@ -13,8 +13,10 @@ sap.ui.define([
                 oRouter = oController.getOwnerComponent().getRouter();
             },
             onPressOutlog: function () {
-                debugger;
                 oRouter.navTo("CreateOutlog");
+            },
+            onPressInlog:function(){
+                oRouter.navTo("CreateInlog");
             }
         });
     });
