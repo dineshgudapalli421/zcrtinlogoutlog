@@ -55,8 +55,17 @@
                             <Text text="{InLogModel>Operation}" />
                             <Text text="{InLogModel>ActivityName}" />
                             <Text
-                                text="{path :'InLogModel>OrderCompleteDate', type: 'sap.ca.ui.model.type.Date', formatOptions: {UTC: false} }"
+                                text="{
+	                                path: 'InLogModel>OrderCompleteDate',
+	                                type: 'sap.ui.model.odata.type.Date',
+	                                formatOptions: {
+		                                UTC: false
+	                                            }
+                                        }"
                             />
+                            <!-- <Text
+                                text="{path :'InLogModel>OrderCompleteDate'}"
+                            /> -->
                         </cells>
                     </ColumnListItem>
                 </items>
