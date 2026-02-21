@@ -77,7 +77,19 @@
                             />
                         </fb:control>
                     </fb:FilterGroupItem>
-                    <fb:FilterGroupItem
+                    <fb:FilterGroupItem name="EquipFrom" 
+                                label="{i18n>EqpFrom}" 
+                                groupName="Group1" 
+                                visibleInFilterBar="true" mandatory="true">
+                                    <fb:control>
+                                        <MultiInput id="idOutlogEquipFrom"
+                                        valueHelpIconSrc="sap-icon://value-help" 
+                                        value="{OutLogModel>EquipFrom}"
+                                        width="60%" 
+                                        valueHelpRequest="onEquipmentVHRequest"/>                                        
+                                    </fb:control>
+                                </fb:FilterGroupItem>
+                    <!-- <fb:FilterGroupItem
                         name="EquipFrom"
                         label="{i18n>EqpFrom}"
                         groupName="Group1"
@@ -92,8 +104,8 @@
                                 liveChange="onLiveChangeEqFrom"
                             />
                         </fb:control>
-                    </fb:FilterGroupItem>
-                    <fb:FilterGroupItem
+                    </fb:FilterGroupItem> -->
+                    <!-- <fb:FilterGroupItem
                         name="EqpTo"
                         label="{i18n>EqpTo}"
                         groupName="Group1"
@@ -108,7 +120,7 @@
                                 type="Number"
                             />
                         </fb:control>
-                    </fb:FilterGroupItem>
+                    </fb:FilterGroupItem> -->
                     <fb:FilterGroupItem
                         name="PlantFrm"
                         label="{i18n>plantFrom}"
@@ -215,7 +227,7 @@
                         visibleInFilterBar="true"
                     >
                         <fb:control>
-                            <Input value="{OutLogModel>Recipient}" />
+                            <Input value="{OutLogModel>/Recipient}" editable="false"/>
                         </fb:control>
                     </fb:FilterGroupItem>
                 </fb:filterGroupItems>

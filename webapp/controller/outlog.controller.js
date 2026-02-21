@@ -12,20 +12,23 @@ sap.ui.define([
     'sap/m/Bar',
     'sap/ui/core/IconPool',
     "sap/m/Title",
-    "sap/m/MessageToast"
+    "sap/m/MessageToast",
+    'sap/ui/model/type/String'
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, JSONModel, FilterOperator, Filter, formatter, MessageBox, MessageItem, MessageView, Dialog, Button, Bar, IconPool, Title, MessageToast) {
+    function (Controller, JSONModel, FilterOperator, Filter, formatter, MessageBox, MessageItem, MessageView, Dialog, Button, Bar, IconPool, Title, MessageToast, TypeString) {
         "use strict";
-        var oRouter, oController, oMeterOutlogModel, oResourceBundle, oResponseMessages = [];
+        var oRouter, oController, oMeterOutlogModel, oResourceBundle, oResponseMessages = [], oRecipient="";
         return Controller.extend("com.lh.sapui5.zcrtinlogoutlog.controller.outlog", {
             formatter: formatter,
             onInit: function () {
                 oController = this;
                 oResourceBundle = oController.getOwnerComponent().getModel("i18n").getResourceBundle();
                 oMeterOutlogModel = oController.getOwnerComponent().getModel();
+                var user = sap.ushell.Container.getUser();
+                oRecipient = user.getId();
                 oController._fnInitializeModel();
                 oMeterOutlogModel.attachBatchRequestSent({}, function () {
                     oController.getView().setBusy(true);
@@ -50,6 +53,7 @@ sap.ui.define([
                     urlParameters: { '$expand': 'NavStorageLoc' },
                     success: function (oData, oResponse) {
                         var oResults = oData.results[0];
+                        oController.getView().getModel("OutLogModel").setProperty("/Recipient", oRecipient);
                         oController.getView().getModel("OutLogModel").setProperty("/InitialLoad", oResults)
                     }, error: function (oError) {
                         var oMessage;
@@ -106,11 +110,22 @@ sap.ui.define([
                 oBindingParams.filters = oOutLogModel.getProperty("/FilterParameters");
             },
             _fnValidatefilterParam: function () {
+                debugger;
                 var oView = oController.getView(), sMsg, sKeyTargetStorLoc, oPostingDate, IsValided = true, isValideFilterRange;
                 var oTargetStorLocComboBox = oView.byId('idTargetStorLoc');
                 var oOutlogModel = oController.getView().getModel("OutLogModel");
-                var sEquipFrom = oOutlogModel.getProperty("/InitialLoad/EquipFrom");
-                var sEquipTo = oOutlogModel.getProperty("/InitialLoad/EquipTo");
+
+                var aTokensEquipment = oController.getView().byId("idOutlogEquipFrom").getTokens();
+                var sEquipFrom = "";
+                if (aTokensEquipment.length === 0) {
+                    sEquipFrom = this.getView().byId("idOutlogEquipFrom").getValue();
+                }
+                else if (aTokensEquipment.length > 0) {
+                    sEquipFrom = aTokensEquipment[0].getText();
+                    sEquipFrom = sEquipFrom.replace("=", "");
+                }
+                //var sEquipFrom = oOutlogModel.getProperty("/InitialLoad/EquipFrom");
+                //var sEquipTo = oOutlogModel.getProperty("/InitialLoad/EquipTo");
                 var oPostingDtInput = oView.byId('idPostingDate');
                 var oDocDtInput = oView.byId('idHeaderDocDate');
                 var oEqipFromInput = oView.byId('idOutlogEquipFrom');
@@ -150,39 +165,65 @@ sap.ui.define([
                     oDocDtInput.setValueState("None");
                     oDocDtInput.setValueStateText("");
                 }
-                isValideFilterRange = Boolean(Number(sEquipTo)) ? Number(sEquipTo) > Number(sEquipFrom) : Boolean(Number(sEquipFrom));
-                if (!isValideFilterRange) {
-                    var oError = oResourceBundle.getText("rangeErrMsg");
-                    MessageBox.error(oError);
-                    IsValided = false
-                }
+                // isValideFilterRange = Boolean(Number(sEquipTo)) ? Number(sEquipTo) > Number(sEquipFrom) : Boolean(Number(sEquipFrom));
+                // if (!isValideFilterRange) {
+                //     var oError = oResourceBundle.getText("rangeErrMsg");
+                //     MessageBox.error(oError);
+                //     IsValided = false
+                // }
                 return IsValided;
             },
             _fnGetFilterValues: function () {
                 var oOutlogModel = oController.getView().getModel("OutLogModel");
                 var aFilter = [];
-                var sEquipFrom = oOutlogModel.getProperty("/InitialLoad/EquipFrom");
-                var sEquipTo = oOutlogModel.getProperty("/InitialLoad/EquipTo");
+                //var sEquipFrom = oOutlogModel.getProperty("/InitialLoad/EquipFrom");
+                //var sEquipTo = oOutlogModel.getProperty("/InitialLoad/EquipTo");
+
                 var sSourStorLoc = oOutlogModel.getProperty("/InitialLoad/StorageLocation");
                 var sTargStorLoc = oOutlogModel.getProperty("/InitialLoad/ReceivingStorageLocation");
                 var sPlant = oOutlogModel.getProperty("/InitialLoad/Plant");
                 var oPostingDate = oOutlogModel.getProperty("/oPostingDate") + "T00:00:00";
                 var oDocDate = oOutlogModel.getProperty("/oCurrentDate") + "T00:00:00";
                 var sRecipient = oOutlogModel.getProperty("/InitialLoad/Recipient");
-                var isValideFilterRange = Boolean(Number(sEquipTo)) ? Number(sEquipTo) > Number(sEquipFrom) : Boolean(Number(sEquipFrom));
-                if (isValideFilterRange) {
-                    if (sEquipFrom && sEquipTo) {
-                        aFilter.push(new Filter("SerialNumber", FilterOperator.BT, sEquipFrom, sEquipTo));
-                    } else if (sEquipFrom && !sEquipTo) {
+                var aTokensEquipment = oController.getView().byId("idOutlogEquipFrom").getTokens();
+                var sEquipFrom = "";
+                if (aTokensEquipment.length === 0) {
+                    sEquipFrom = this.getView().byId("idOutlogEquipFrom").getValue();
+                    if (sEquipFrom) aFilter.push(new Filter("SerialNumber", FilterOperator.EQ, sEquipFrom));
+                }
+                else if (aTokensEquipment.length === 1) {
+                    sEquipFrom = aTokensEquipment[0].getText();
+                    sEquipFrom = sEquipFrom.replace("=", "");
+                    aFilter.push(new Filter("SerialNumber", FilterOperator.EQ, sEquipFrom));
+                }
+                else if (aTokensEquipment.length === 2) {
+                    let sEquipFrom1 = aTokensEquipment[0].getText();
+                    sEquipFrom1 = sEquipFrom1.replace("=", "");
+                    let sEquipFrom2 = aTokensEquipment[1].getText();
+                    sEquipFrom2 = sEquipFrom2.replace("=", "");
+                    aFilter.push(new Filter("SerialNumber", FilterOperator.BT, sEquipFrom1, sEquipFrom2));
+                }
+                else if (aTokensEquipment.length > 2) {
+                    for (let i = 0; i <= aTokensEquipment.length - 1; i++) {
+                        sEquipFrom = aTokensEquipment[i].getText();
+                        sEquipFrom = sEquipFrom.replace("=", "");
                         aFilter.push(new Filter("SerialNumber", FilterOperator.EQ, sEquipFrom));
-                    } else if (!sEquipFrom && sEquipTo) {
-                        var oError = oResourceBundle.getText("rangeErrMsg");
-                        MessageBox.error(oError);
-                    } else {
-                        var oError = oResourceBundle.getText("rangeErrMsg");
-                        MessageBox.error(oError);
                     }
                 }
+                // var isValideFilterRange = Boolean(Number(sEquipTo)) ? Number(sEquipTo) > Number(sEquipFrom) : Boolean(Number(sEquipFrom));
+                // if (isValideFilterRange) {
+                //     if (sEquipFrom && sEquipTo) {
+                //         aFilter.push(new Filter("SerialNumber", FilterOperator.BT, sEquipFrom, sEquipTo));
+                //     } else if (sEquipFrom && !sEquipTo) {
+                //         aFilter.push(new Filter("SerialNumber", FilterOperator.EQ, sEquipFrom));
+                //     } else if (!sEquipFrom && sEquipTo) {
+                //         var oError = oResourceBundle.getText("rangeErrMsg");
+                //         MessageBox.error(oError);
+                //     } else {
+                //         var oError = oResourceBundle.getText("rangeErrMsg");
+                //         MessageBox.error(oError);
+                //     }
+                // }
                 aFilter.push(new Filter("StorageLocation", FilterOperator.EQ, sTargStorLoc));
                 aFilter.push(new Filter("Plant", FilterOperator.EQ, sPlant));
                 aFilter.push(new Filter("PostingDate", FilterOperator.EQ, oPostingDate)); //posting date
@@ -233,7 +274,7 @@ sap.ui.define([
                             subtitle: oResourceBundle.getText("sealdateExpin1YearMsg", [oSelectedList.SerialNumber]),
                             counter: 1
                         });
-                    } 
+                    }
                     // else {
                     //     aMessages.push({
                     //         type: "Warning",
@@ -287,6 +328,7 @@ sap.ui.define([
                             "ReadDate": "\/Date(1713225600000)\/",
                             "FormNo": oSelectedList.FormNo,
                             "SealDate": oSelectedList.SealDate,
+                            "SealExpiry": oSelectedList.SealExpiry,
                             "OperationNo": oSelectedList.OperationNo,
                             "Message": oSelectedList.Message,
                             "Type": oSelectedList.Type
@@ -463,7 +505,7 @@ sap.ui.define([
                 TwoYearFromNow.setFullYear(now.getFullYear() + 2);
                 if (oSealDate < oneYearFromNow) {
                     sMessageType = "Error"
-                } 
+                }
                 // else if (oSealDate >= oneYearFromNow && oSealDate <= TwoYearFromNow) {
                 //     sMessageType = "Warning"
                 // }
@@ -574,6 +616,36 @@ sap.ui.define([
                         }
                     }
                 });
-            }
+            },
+
+            onEquipmentVHRequest: function () {
+                debugger;
+                this._oEquipmentMultiInput = this.byId("idOutlogEquipFrom");
+                this.loadFragment({
+                    name: "com.lh.sapui5.zcrtinlogoutlog.fragment.oEquipment"
+                }).then(function (oDialog) {
+                    this._oEquipmentDialog = oDialog;
+                    this.getView().addDependent(oDialog);
+                    oDialog.setRangeKeyFields([{
+                        label: "Equipment",
+                        key: "Equipment",
+                        type: "string",
+                        typeInstance: new TypeString({}, { maxLength: 10 })
+                    }]);
+                    oDialog.setTokens(this._oEquipmentMultiInput.getTokens());
+                    oDialog.open();
+                }.bind(this));
+            },
+            onEquipmentVHOkPress: function (oEvent) {
+                var aTokens = oEvent.getParameter("tokens");
+                this._oEquipmentMultiInput.setTokens(aTokens);
+                this._oEquipmentDialog.close();
+            },
+            onEquipmentVHCancelPress: function () {
+                this._oEquipmentDialog.close();
+            },
+            onEquipmentVHAfterClose: function () {
+                this._oEquipmentDialog.destroy();
+            },
         });
     });

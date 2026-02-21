@@ -370,6 +370,21 @@
                     />
                 </template>
             </Column>
+             <Column
+                hAlign="Right"
+                autoResizable="true"
+                width="6rem"
+            >
+                <m:Label text="{/#DeviceData/SealExpiry/@sap:label}" />
+                <template>
+                    <m:Text
+                        text="{'path':'OutLogModel>SealExpiry', 'type': 'sap.ui.model.type.Date', 'formatOptions': {
+							'pattern': 'MM-dd-yyyy'
+						}}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
             <Column
                 hAlign="End"
                 autoResizable="true"

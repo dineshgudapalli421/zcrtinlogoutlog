@@ -1,0 +1,15 @@
+
+<core:FragmentDefinition
+xmlns="sap.ui.comp.valuehelpdialog"
+xmlns:core="sap.ui.core">
+<ValueHelpDialog 
+        title="Equipment"
+        ok=".onEquipmentVHOkPress"
+        cancel=".onEquipmentVHCancelPress"
+        key="Equipment"
+        descriptionKey="Equipment"
+        afterClose=".onEquipmentVHAfterClose"
+        supportRanges="true"
+        supportRangesOnly="true"
+        />
+</core:FragmentDefinition>

@@ -20,7 +20,7 @@ sap.ui.define([
      */
     function (Controller, JSONModel, FilterOperator, Filter, formatter, MessageBox, MessageItem, MessageView, Dialog, Button, Bar, IconPool, Title, MessageToast, Fragment) {
         "use strict";
-        var oRouter, oController, oMeterInlogModel, oResourceBundle, aMessages = [], UIComponent, sEquipmentNo = "";
+        var oRouter, oController, oMeterInlogModel, oResourceBundle, aMessages = [], UIComponent, sEquipmentNo = "", oReceivedBy = "";
         return Controller.extend("com.lh.sapui5.zcrtinlogoutlog.controller.inlog", {
             formatter: formatter,
             onInit: function () {
@@ -31,11 +31,13 @@ sap.ui.define([
                 oMeterInlogModel = oController.getOwnerComponent().getModel("ZDM_METER_INLOG_SRV");
                 var oDeviceModel = oController.getOwnerComponent().getModel("device");
                 // bIsDesktop = oDeviceModel.getProperty("/system/desktop");
-
+                var user = sap.ushell.Container.getUser();
+                oReceivedBy = user.getId();
                 oController._EventDelegate();
                 oRouter.attachRouteMatched(oController.initController, oController)
             },
             initController: function () {
+                debugger;
                 oController._fnResetInlog();
                 oController._fninitailLoad();
             },
@@ -52,18 +54,18 @@ sap.ui.define([
                         NavMRValidity: [],
                         sExistingMeter: '',
                         MeterResults: {
-                            DelvKwhFlag: false,
-                            DelvKwFlag: false,
-                            DelvKvaFlag: false,
-                            DelvKvarFlag: false,
-                            DelvKvahFlag: false,
-                            DelvKvarhFlag: false,
-                            RecvKwhFlag: false,
-                            RecvKwFlag: false,
-                            RecvKvaFlag: false,
-                            RecvKvarFlag: false,
-                            RecvKvahFlag: false,
-                            RecvKvarhFlag: false
+                            DelvKwhFlag: "",//false,
+                            DelvKwFlag: "",//false,
+                            DelvKvaFlag: "",//false,
+                            DelvKvarFlag: "",//false,
+                            DelvKvahFlag: "",//false,
+                            DelvKvarhFlag: "",//false,
+                            RecvKwhFlag: "",//false,
+                            RecvKwFlag: "",//false,
+                            RecvKvaFlag: "",//false,
+                            RecvKvarFlag: "",//false,
+                            RecvKvahFlag: "",//false,
+                            RecvKvarhFlag: "",//false,
                         }
                     },
                     ItemDataSet: []
@@ -71,6 +73,7 @@ sap.ui.define([
                 oController.getView().setModel(oInlogData, "InLogModel");
             },
             _EventDelegate: function () {
+                debugger;
                 var oElement = oController.getView().byId("idInlogSerialNumber");
                 var oDelegate = {
                     onfocusout: function (oEvent) {
@@ -81,7 +84,8 @@ sap.ui.define([
                 oElement.addEventDelegate(oDelegate);
             },
             _fngetMeterDetails: function (sEquip) {
-                if (sEquipmentNo === sEquip){
+                debugger;
+                if (sEquipmentNo === sEquip) {
                     return;
                 };
                 var aFilter = [], oModel = oController.getView().getModel("InLogModel");
@@ -90,7 +94,7 @@ sap.ui.define([
                     filters: aFilter,
                     urlParameters: { '$expand': 'NavSOHistory' },
                     success: function (oData, oResponse) {
-                        
+
                         if (oData.results.length) {
                             var oResults = oData.results[0];
                             sEquipmentNo = sEquip;
@@ -333,11 +337,13 @@ sap.ui.define([
                 // User this for line item validtion
             },
             _fninitailLoad: function () {
+                debugger;
                 oMeterInlogModel.read("/MIInitialLoadSet", {
                     urlParameters: { '$expand': 'NavMRValidity,NavDisposition' },
                     success: function (oData, oResponse) {
                         var aDispostiton = oData.results[0].NavDisposition;
                         var aNavMRValidity = oData.results[0].NavMRValidity;
+                        oController.getView().getModel("InLogModel").setProperty("/ReceivedBy", oReceivedBy);
                         oController.getView().getModel("InLogModel").setProperty("/InitialLoad/NavDisposition", aDispostiton);
                         oController.getView().getModel("InLogModel").setProperty("/InitialLoad/NavMRValidity", aNavMRValidity);
                     }, error: function (oError) {
@@ -472,7 +478,7 @@ sap.ui.define([
                             "ActivityCodeDesc": "",
                             "Disposition": "",
                             "ValidationStatus": "",
-                            "PostingDate": "\/Date(1713225600000)\/",
+                            "PostingDate": oController.formatter.fnDateFormate(odata.PostingDate), //"\/Date(1713225600000)\/",
                             "DelvReadKwh": odata.DelvReadKwh ? odata.DelvReadKwh : '0',
                             "DelvReadKw": odata.DelvReadKw ? odata.DelvReadKw : '0',
                             "DelvReadKva": odata.DelvReadKva ? odata.DelvReadKva : '0',

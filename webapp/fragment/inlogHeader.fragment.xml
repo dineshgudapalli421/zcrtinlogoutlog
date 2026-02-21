@@ -245,7 +245,7 @@
                         <fb:control>
                             <Input
                                 id="idPostingDate"
-                                value="{InLogModel>PostingDate}"
+                                value="{InLogModel>/ReceivedBy}" editable="false"
                             />
                         </fb:control>
                     </fb:FilterGroupItem>
@@ -257,12 +257,13 @@
                         label="{i18n>lhInlogReadDelkwhLabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/DelvKwhFlag}"
+                        visible="{= ${InLogModel>MeterResults/DelvKwhFlag} !== ''}"
                     >
                         <fb:control>
+                        <!-- {InLogModel>MeterResults/DelvKwhFlag} -->
                             <Input
                                 value="{InLogModel>DelvReadKwh}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -275,12 +276,12 @@
                         label="{i18n>lhInlogReadDelkwLabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/DelvKwFlag}"
-                    >
+                        visible="{= ${InLogModel>MeterResults/DelvKwFlag} !== ''}"                        
+                    > <!-- visible="{InLogModel>MeterResults/DelvKwFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>DelvReadKw}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -293,12 +294,13 @@
                         label="{i18n>lhInlogReadDelkVALabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/DelvKvaFlag}"
+                        visible="{= ${InLogModel>MeterResults/DelvKvaFlag} !== ''}" 
                     >
+                    <!-- > visible="{InLogModel>MeterResults/DelvKvaFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>DelvReadKva}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -311,12 +313,13 @@
                         label="{i18n>lhInlogReadDelKvarLabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/DelvKvarFlag}"
-                    >
+                        visible="{= ${InLogModel>MeterResults/DelvKvarFlag} !== ''}"
+                    > 
+                    <!-- >  visible="{InLogModel>MeterResults/DelvKvarFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>DelvReadKvar}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -329,12 +332,13 @@
                         label="{i18n>lhInlogReadDelkVAhLabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/DelvKvahFlag}"
+                        visible="{= ${InLogModel>MeterResults/DelvKvahFlag} !== ''}"                        
                     >
+                    <!-- //visible="{InLogModel>MeterResults/DelvKvahFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>DelvReadKvah}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -347,12 +351,13 @@
                         label="{i18n>lhInlogReadDelkvarhLabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/DelvKvarhFlag}"
+                        visible="{= ${InLogModel>MeterResults/DelvKvarhFlag} !== ''}"                                               
                     >
+                    <!-- visible="{InLogModel>MeterResults/DelvKvarhFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>DelvReadKvarh}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -365,12 +370,13 @@
                         label="{i18n>lhInlogReadReckwhLabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/RecvKwhFlag}"
+                        visible="{= ${InLogModel>MeterResults/RecvKwhFlag} !== ''}"                        
                     >
+                    <!-- visible="{InLogModel>MeterResults/RecvKwhFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>RecvReadKwh}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -383,12 +389,13 @@
                         label="{i18n>lhInlogReadReckWLabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/RecvKwFlag}"
+                        visible="{= ${InLogModel>MeterResults/RecvKwFlag} !== ''}"                       
                     >
+                     <!-- visible="{InLogModel>MeterResults/RecvKwFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>RecvReadKw}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -401,12 +408,13 @@
                         label="{i18n>lhInlogReadReckVALabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/RecvKvaFlag}"
+                        visible="{= ${InLogModel>MeterResults/RecvKvaFlag} !== ''}" 
                     >
+                    <!-- > visible="{InLogModel>MeterResults/RecvKvaFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>RecvReadKva}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -419,12 +427,13 @@
                         label="{i18n>lhInlogReadRecKvarLabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/RecvKvarFlag}"
+                        visible="{= ${InLogModel>MeterResults/RecvKvarFlag} !== ''}" 
                     >
+                    <!-- > visible="{InLogModel>MeterResults/RecvKvarFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>RecvReadKvar}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -437,12 +446,13 @@
                         label="{i18n>lhInlogReadReckVAhLabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/RecvKvahFlag}"
+                         visible="{= ${InLogModel>MeterResults/RecvKvahFlag} !== ''}"
                     >
+                    <!-- >visible="{InLogModel>MeterResults/RecvKvahFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>RecvReadKvah}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
@@ -455,12 +465,13 @@
                         label="{i18n>lhInlogReadReckvarhLabel}"
                         groupName="Group2"
                         visibleInFilterBar="true"
-                        visible="{InLogModel>MeterResults/RecvKvarhFlag}"
+                        visible="{= ${InLogModel>MeterResults/RecvKvarhFlag} !== ''}"
                     >
+                    <!-- > visible="{InLogModel>MeterResults/RecvKvarhFlag}" -->
                         <fb:control>
                             <Input
                                 value="{InLogModel>RecvReadKvarh}"
-                                type="Number"
+                                type="Text"
                                 editable="{= ${InLogModel>MRValidityCode} !== 'E'}"
                             />
                         </fb:control>
