@@ -157,7 +157,7 @@
                     />
                 </template>
             </Column>
-            <Column
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="9rem"
@@ -169,13 +169,14 @@
                         wrapping="false"
                     />
                 </template>
-            </Column>
+            </Column> -->
             <Column
                 hAlign="End"
                 autoResizable="true"
-                width="7rem"
+                width="9rem"
             >
-                <m:Label text="{/#DeviceData/AdjRecvReadKwh/@sap:label}" />
+                <!-- <m:Label text="{/#DeviceData/AdjRecvReadKwh/@sap:label}" /> -->
+                <m:Label text="KWH Del(Adj.)" />
                 <template>
                     <m:Input
                         type="Number"
@@ -185,7 +186,7 @@
                     />
                 </template>
             </Column>
-            <Column
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="9rem"
@@ -197,13 +198,14 @@
                         wrapping="false"
                     />
                 </template>
-            </Column>
+            </Column> -->
             <Column
                 hAlign="End"
                 autoResizable="true"
-                width="7rem"
+                width="9rem"
             >
-                <m:Label text="{/#DeviceData/AdjDelvReadKwh/@sap:label}" />
+                <!-- <m:Label text="{/#DeviceData/AdjDelvReadKwh/@sap:label}" /> -->
+                <m:Label text="KWH Rec (Adj.)" />
                 <template>
                     <m:Input
                         type="Number"
@@ -213,7 +215,7 @@
                     />
                 </template>
             </Column>
-            <Column
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="9rem"
@@ -225,8 +227,8 @@
                         wrapping="false"
                     />
                 </template>
-            </Column>
-            <Column
+            </Column> -->
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="7rem"
@@ -240,8 +242,8 @@
                         editable="{= ${OutLogModel>RecvKwFlag} === 'X'}"
                     />
                 </template>
-            </Column>
-            <Column
+            </Column> -->
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="9rem"
@@ -253,8 +255,8 @@
                         wrapping="false"
                     />
                 </template>
-            </Column>
-            <Column
+            </Column> -->
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="7rem"
@@ -268,8 +270,8 @@
                         editable="{= ${OutLogModel>DelvKwFlag} === 'X'}"
                     />
                 </template>
-            </Column>
-            <Column
+            </Column> -->
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="9rem"
@@ -281,8 +283,8 @@
                         wrapping="false"
                     />
                 </template>
-            </Column>
-            <Column
+            </Column> -->
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="7rem"
@@ -296,8 +298,8 @@
                         editable="{= ${OutLogModel>RecvKvaFlag} === 'X'}"
                     />
                 </template>
-            </Column>
-            <Column
+            </Column> -->
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="9rem"
@@ -309,8 +311,8 @@
                         wrapping="false"
                     />
                 </template>
-            </Column>
-            <Column
+            </Column> -->
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="7rem"
@@ -324,7 +326,7 @@
                         editable="{= ${OutLogModel>DelvKvaFlag} === 'X'}"
                     />
                 </template>
-            </Column>
+            </Column> -->
             <Column
                 hAlign="End"
                 autoResizable="true"

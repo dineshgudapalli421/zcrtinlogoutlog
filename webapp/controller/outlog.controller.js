@@ -20,7 +20,7 @@ sap.ui.define([
      */
     function (Controller, JSONModel, FilterOperator, Filter, formatter, MessageBox, MessageItem, MessageView, Dialog, Button, Bar, IconPool, Title, MessageToast, TypeString) {
         "use strict";
-        var oRouter, oController, oMeterOutlogModel, oResourceBundle, oResponseMessages = [], oRecipient="";
+        var oRouter, oController, oMeterOutlogModel, oResourceBundle, oResponseMessages = [], oRecipient = "";
         return Controller.extend("com.lh.sapui5.zcrtinlogoutlog.controller.outlog", {
             formatter: formatter,
             onInit: function () {
@@ -264,27 +264,27 @@ sap.ui.define([
                         counter: 1
                     });
                 }
-                if (oSelectedList.SealDate) {
-                    var sMessageType = oController._fnEquipExpireinOneToTwoYears(oSelectedList.SealDate);
-                    if (sMessageType === "Error") {
-                        aMessages.push({
-                            type: "Error",
-                            title: oResourceBundle.getText("errorMsgTitle"),
-                            description: oResourceBundle.getText("sealdateExpin1YearMsg", [oSelectedList.SerialNumber]),
-                            subtitle: oResourceBundle.getText("sealdateExpin1YearMsg", [oSelectedList.SerialNumber]),
-                            counter: 1
-                        });
-                    }
-                    // else {
-                    //     aMessages.push({
-                    //         type: "Warning",
-                    //         title: oResourceBundle.getText("warningMsgTitle"),
-                    //         description: oResourceBundle.getText("sealdateExpin2YearMsg", [oSelectedList.SerialNumber, oSelectedList.SealDate]),
-                    //         subtitle: oResourceBundle.getText("sealdateExpin2YearMsg", [oSelectedList.SerialNumber, oSelectedList.SealDate]),
-                    //         counter: 1
-                    //     });
-                    // }
-                }
+                // if (oSelectedList.SealDate) {
+                //     var sMessageType = oController._fnEquipExpireinOneToTwoYears(oSelectedList.SealDate);
+                //     if (sMessageType === "Error") {
+                //         aMessages.push({
+                //             type: "Error",
+                //             title: oResourceBundle.getText("errorMsgTitle"),
+                //             description: oResourceBundle.getText("sealdateExpin1YearMsg", [oSelectedList.SerialNumber]),
+                //             subtitle: oResourceBundle.getText("sealdateExpin1YearMsg", [oSelectedList.SerialNumber]),
+                //             counter: 1
+                //         });
+                //     }
+                //     // else {
+                //     //     aMessages.push({
+                //     //         type: "Warning",
+                //     //         title: oResourceBundle.getText("warningMsgTitle"),
+                //     //         description: oResourceBundle.getText("sealdateExpin2YearMsg", [oSelectedList.SerialNumber, oSelectedList.SealDate]),
+                //     //         subtitle: oResourceBundle.getText("sealdateExpin2YearMsg", [oSelectedList.SerialNumber, oSelectedList.SealDate]),
+                //     //         counter: 1
+                //     //     });
+                //     // }
+                // }
                 return aMessages;
             },
             _CreateEntries: function (aSelecedIndices, bIsLineItemsValidted) {
@@ -307,23 +307,23 @@ sap.ui.define([
                             "PostingDate": oSelectedList.PostingDate,
                             "MaterialNumber": oSelectedList.MaterialNumber,
                             "MaterialDescription": oSelectedList.MaterialDescription,
-                            "RecvReadKwh": oSelectedList.RecvReadKwh,
+                            // "RecvReadKwh": oSelectedList.RecvReadKwh,
                             "AdjRecvReadKwh": oSelectedList.AdjRecvReadKwh,
                             "RecvKwhFlag": oSelectedList.RecvKwhFlag,
-                            "DelvReadKwh": oSelectedList.DelvReadKwh,
+                            // "DelvReadKwh": oSelectedList.DelvReadKwh,
                             "AdjDelvReadKwh": oSelectedList.AdjDelvReadKwh,
                             "DelvKwhFlag": oSelectedList.DelvKwhFlag,
-                            "RecvReadKw": oSelectedList.RecvReadKw,
-                            "AdjRecvReadKw": oSelectedList.AdjRecvReadKw,
+                            // "RecvReadKw": oSelectedList.RecvReadKw,
+                            // "AdjRecvReadKw": oSelectedList.AdjRecvReadKw,
                             "RecvKwFlag": oSelectedList.RecvKwFlag,
-                            "DelvReadKw": oSelectedList.DelvReadKw,
-                            "AdjDelvReadKw": oSelectedList.AdjDelvReadKw,
+                            // "DelvReadKw": oSelectedList.DelvReadKw,
+                            // "AdjDelvReadKw": oSelectedList.AdjDelvReadKw,
                             "DelvKwFlag": oSelectedList.DelvKwFlag,
-                            "RecvReadKva": oSelectedList.RecvReadKva,
-                            "AdjRecvReadKva": oSelectedList.AdjRecvReadKva,
+                            // "RecvReadKva": oSelectedList.RecvReadKva,
+                            // "AdjRecvReadKva": oSelectedList.AdjRecvReadKva,
                             "RecvKvaFlag": oSelectedList.RecvKvaFlag,
-                            "DelvReadKva": oSelectedList.DelvReadKva,
-                            "AdjDelvReadKva": oSelectedList.AdjDelvReadKva,
+                            //"DelvReadKva": oSelectedList.DelvReadKva,
+                            // "AdjDelvReadKva": oSelectedList.AdjDelvReadKva,
                             "DelvKvaFlag": oSelectedList.DelvKvaFlag,
                             "ReadDate": "\/Date(1713225600000)\/",
                             "FormNo": oSelectedList.FormNo,
@@ -450,12 +450,17 @@ sap.ui.define([
             _fnAdjReadValiation: function (oSelectedList) {
                 var sFlagHasError = "";
                 if (oSelectedList.Type !== 'E') {
-                    if ((oSelectedList.DelvKvaFlag === 'X' && !Boolean(oSelectedList.AdjDelvReadKva)) ||
-                        (oSelectedList.DelvKwFlag === 'X' && !Boolean(oSelectedList.AdjDelvReadKw)) ||
-                        (oSelectedList.DelvKwhFlag === 'X' && !Boolean(oSelectedList.AdjDelvReadKwh)) ||
-                        (oSelectedList.DelvReadKva === 'X' && !Boolean(oSelectedList.AdjRecvReadKva)) ||
-                        (oSelectedList.DelvReadKw === 'X' && !Boolean(oSelectedList.AdjRecvReadKw)) ||
-                        (oSelectedList.DelvReadKwh === 'X' && !Boolean(oSelectedList.AdjRecvReadKwh))) {
+                    // if ((oSelectedList.DelvKvaFlag === 'X' && !Boolean(oSelectedList.AdjDelvReadKva)) ||
+                    //     (oSelectedList.DelvKwFlag === 'X' && !Boolean(oSelectedList.AdjDelvReadKw)) ||
+                    //     (oSelectedList.DelvKwhFlag === 'X' && !Boolean(oSelectedList.AdjDelvReadKwh)) ||
+                    //     (oSelectedList.DelvReadKva === 'X' && !Boolean(oSelectedList.AdjRecvReadKva)) ||
+                    //     (oSelectedList.DelvReadKw === 'X' && !Boolean(oSelectedList.AdjRecvReadKw)) ||
+                    //     (oSelectedList.DelvReadKwh === 'X' && !Boolean(oSelectedList.AdjRecvReadKwh))) {
+                    //     sFlagHasError = "S";
+                    // }
+                    if ((oSelectedList.DelvKvaFlag === 'X') ||
+                        (oSelectedList.DelvKwFlag === 'X') ||
+                        (oSelectedList.DelvKwhFlag === 'X' && !Boolean(oSelectedList.AdjDelvReadKwh))) {
                         sFlagHasError = "S";
                     }
                 } else {
@@ -632,6 +637,10 @@ sap.ui.define([
                         type: "string",
                         typeInstance: new TypeString({}, { maxLength: 10 })
                     }]);
+                    oDialog.setIncludeRangeOperations([
+                        sap.ui.comp.valuehelpdialog.ValueHelpRangeOperation.EQ
+                    ], "string");
+                    oDialog.setMaxExcludeRanges(0);
                     oDialog.setTokens(this._oEquipmentMultiInput.getTokens());
                     oDialog.open();
                 }.bind(this));

@@ -85,7 +85,7 @@
                                         <MultiInput id="idOutlogEquipFrom"
                                         valueHelpIconSrc="sap-icon://value-help" 
                                         value="{OutLogModel>EquipFrom}"
-                                        width="60%" 
+                                        width="60%"
                                         valueHelpRequest="onEquipmentVHRequest"/>                                        
                                     </fb:control>
                                 </fb:FilterGroupItem>

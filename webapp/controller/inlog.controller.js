@@ -254,6 +254,7 @@ sap.ui.define([
                 oMeterInput.setValueStateText("");
             },
             onSearch: function () {
+                debugger;
                 var oMrValSelect = oController.getView().byId("idMRValidity");
                 var oModel = oController.getView().getModel("InLogModel");
                 var aSelectedDisposition = oModel.getProperty("/InitialLoad/SelectedDisposition");
@@ -309,12 +310,42 @@ sap.ui.define([
                 return !bHasDuplicate;
             },
             _fnValidateHeader: function (oModel) {
+                debugger;
                 var aSelectedDisposition = oModel.getProperty("/InitialLoad/SelectedDisposition");
                 var sMeter = oModel.getProperty("/MeterNo");
                 var oNavMRValidity = oModel.getProperty("/InitialLoad/MRValidityCode");
                 var oMeterInput = oController.getView().byId("idInlogSerialNumber");
                 var oDispositionInput = oController.getView().byId("idInlogDisposition");
                 var oMRValidityInput = oController.getView().byId("idMRValidity");
+                //*************** Added By Dinesh  */
+                let DelvKvaFlag = oModel.getProperty("/InitialLoad/MeterResults/DelvKvaFlag");
+                let DelvKvahFlag = oModel.getProperty("/InitialLoad/MeterResults/DelvKvahFlag");
+                let DelvKvarFlag = oModel.getProperty("/InitialLoad/MeterResults/DelvKvarFlag");
+                let DelvKvarhFlag = oModel.getProperty("/InitialLoad/MeterResults/DelvKvarhFlag");
+                let DelvKwFlag = oModel.getProperty("/InitialLoad/MeterResults/DelvKwFlag");
+                let DelvKwhFlag = oModel.getProperty("/InitialLoad/MeterResults/DelvKwhFlag");
+                let RecvKvaFlag = oModel.getProperty("/InitialLoad/MeterResults/RecvKvaFlag");
+                let RecvKvahFlag = oModel.getProperty("/InitialLoad/MeterResults/RecvKvahFlag");
+                let RecvKvarFlag = oModel.getProperty("/InitialLoad/MeterResults/RecvKvarFlag");
+                let RecvKvarhFlag = oModel.getProperty("/InitialLoad/MeterResults/RecvKvarhFlag");
+                let RecvKwFlag = oModel.getProperty("/InitialLoad/MeterResults/RecvKwFlag");
+                let RecvKwhFlag = oModel.getProperty("/InitialLoad/MeterResults/RecvKwhFlag");
+
+                let DelvReadKvaInput = oController.getView().byId("idInlogDelvReadKva");
+                let DelvReadKwhInput = oController.getView().byId("idInlogDelvReadKwh");
+                let DelvReadKwInput = oController.getView().byId("idInlogDelvReadKw");
+                let DelvReadKvarInput = oController.getView().byId("idInlogDelvReadKvar");
+                let DelvReadKvahInput = oController.getView().byId("idInlogDelvReadKvah");
+                let DelvReadKvarhInput = oController.getView().byId("idInlogDelvReadKvarh");
+
+                let RecvReadKwhInput = oController.getView().byId("idInlogRecvReadKwh");
+                let RecvReadKwInput = oController.getView().byId("idInlogRecvReadKw");
+                let RecvReadKvaInput = oController.getView().byId("idInlogRecvReadKva");
+                let RecvReadKvarInput = oController.getView().byId("idInlogRecvReadKvar");
+                let RecvReadKvahInput = oController.getView().byId("idInlogRecvReadKvah");
+                let RecvReadKvarhInput = oController.getView().byId("idInlogRecvReadKvarh");
+
+                //*********************************/
                 var bIsValidated = true;
                 if (!sMeter) {
                     oMeterInput.setValueState("Error");
@@ -331,6 +362,105 @@ sap.ui.define([
                     oMRValidityInput.setValueStateText(oResourceBundle.getText("lhInlogMrValMsg")); // 
                     bIsValidated = false;
                 }
+                //*********************** Added By Dinesh ***********/
+                if (DelvKvaFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKva") === undefined || oModel.getProperty("/InitialLoad/DelvReadKva") === '')) {
+                    DelvReadKvaInput.setValueState("Error");
+                    DelvReadKvaInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelkVAErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    DelvReadKvaInput.setValueState("None");
+                    DelvReadKvaInput.setValueStateText("");
+                }
+                if (DelvKvahFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKvah") === undefined || oModel.getProperty("/InitialLoad/DelvReadKvah") === '')) {
+                    DelvReadKvahInput.setValueState("Error");
+                    DelvReadKvahInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelkVAhErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    DelvReadKvahInput.setValueState("None");
+                    DelvReadKvahInput.setValueStateText("");
+                }
+                if (DelvKvarFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKvar") === undefined || oModel.getProperty("/InitialLoad/DelvReadKvar") === '')) {
+                    DelvReadKvarInput.setValueState("Error");
+                    DelvReadKvarInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelKvarErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    DelvReadKvarInput.setValueState("None");
+                    DelvReadKvarInput.setValueStateText("");
+                }
+                if (DelvKvarhFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKvarh") === undefined || oModel.getProperty("/InitialLoad/DelvReadKvarh") === '')) {
+                    DelvReadKvarhInput.setValueState("Error");
+                    DelvReadKvarhInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelkvarhErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    DelvReadKvarhInput.setValueState("None");
+                    DelvReadKvarhInput.setValueStateText("");
+                }
+                if (DelvKwFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKw") === undefined || oModel.getProperty("/InitialLoad/DelvReadKw") === '')) {
+                    DelvReadKwInput.setValueState("Error");
+                    DelvReadKwInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelkwErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    DelvReadKwInput.setValueState("None");
+                    DelvReadKwInput.setValueStateText("");
+                }
+                if (DelvKwhFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKwh") === undefined || oModel.getProperty("/InitialLoad/DelvReadKwh") === '')) {
+                    DelvReadKwhInput.setValueState("Error");
+                    DelvReadKwhInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelkwhErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    DelvReadKwhInput.setValueState("None");
+                    DelvReadKwhInput.setValueStateText("");
+                }
+                if (RecvKvaFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKva") === undefined || oModel.getProperty("/InitialLoad/RecvReadKva") === '')) {
+                    RecvReadKvaInput.setValueState("Error");
+                    RecvReadKvaInput.setValueStateText(oResourceBundle.getText("lhInlogReadReckVAErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    RecvReadKvaInput.setValueState("None");
+                    RecvReadKvaInput.setValueStateText("");
+                }
+                if (RecvKvahFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKvah") === undefined || oModel.getProperty("/InitialLoad/RecvReadKvah") === '')) {
+                    RecvReadKvahInput.setValueState("Error");
+                    RecvReadKvahInput.setValueStateText(oResourceBundle.getText("lhInlogReadReckVAhErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    RecvReadKvahInput.setValueState("None");
+                    RecvReadKvahInput.setValueStateText("");
+                }
+                if (RecvKvarFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKvar") === undefined || oModel.getProperty("/InitialLoad/RecvReadKvar") === '')) {
+                    RecvReadKvarInput.setValueState("Error");
+                    RecvReadKvarInput.setValueStateText(oResourceBundle.getText("lhInlogReadRecKvarErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    RecvReadKvarInput.setValueState("None");
+                    RecvReadKvarInput.setValueStateText("");
+                }
+                if (RecvKvarhFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKvarh") === undefined || oModel.getProperty("/InitialLoad/RecvReadKvarh") === '')) {
+                    RecvReadKvarhInput.setValueState("Error");
+                    RecvReadKvarhInput.setValueStateText(oResourceBundle.getText("lhInlogReadReckvarhErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    RecvReadKvarhInput.setValueState("None");
+                    RecvReadKvarhInput.setValueStateText("");
+                }
+                if (RecvKwFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKw") === undefined || oModel.getProperty("/InitialLoad/RecvReadKw") === '')) {
+                    RecvReadKwInput.setValueState("Error");
+                    RecvReadKwInput.setValueStateText(oResourceBundle.getText("lhInlogReadReckWErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    RecvReadKwInput.setValueState("None");
+                    RecvReadKwInput.setValueStateText("");
+                }
+                if (RecvKwhFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKwh") === undefined || oModel.getProperty("/InitialLoad/RecvReadKwh") === '')) {
+                    RecvReadKwhInput.setValueState("Error");
+                    RecvReadKwhInput.setValueStateText(oResourceBundle.getText("lhInlogReadReckwhErrMsg")); // 
+                    bIsValidated = false;
+                } else {
+                    RecvReadKwhInput.setValueState("None");
+                    RecvReadKwhInput.setValueStateText("");
+                }
+                //******************************************************/
+
                 return bIsValidated;
             },
             _fnValidateLineItems: function () {

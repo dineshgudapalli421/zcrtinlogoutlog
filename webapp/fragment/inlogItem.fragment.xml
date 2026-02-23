@@ -82,7 +82,7 @@
             </Column>
             <Column
                 hAlign="Right"
-                width="5rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogKvaDelvrLabel}" />
                 <template>
@@ -94,7 +94,7 @@
             </Column>
             <Column
                 hAlign="Right"
-                width="5rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogKvahDelvrLabel}" />
                 <template>
@@ -106,7 +106,7 @@
             </Column>
             <Column
                 hAlign="Right"
-                width="5rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogKvarDelvrLabel}" />
                 <template>
@@ -118,7 +118,7 @@
             </Column>
             <Column
                hAlign="Right"
-                width="5rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogKwDelvrLabel}" />
                 <template>
@@ -130,7 +130,7 @@
             </Column>
             <Column
                 hAlign="Right"
-                width="5rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogKwhDelvrLabel}" />
                 <template>
@@ -140,6 +140,19 @@
                     />
                 </template>
             </Column>
+            <Column
+                hAlign="Right"
+                width="9rem"
+            >
+                <m:Label text="{i18n>lhinlogKvarhDelvrLabel}" />
+                <template>
+                    <m:Text
+                        text="{InLogModel>DelvReadKvarh}"
+                        wrapping="false"
+                    />
+                </template>
+            </Column>
+
             <Column
                 hAlign="Left"
                 width="8rem"
@@ -166,7 +179,7 @@
             </Column>
             <Column
                 hAlign="Right"
-                width="7rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogRecvReadKwhLabel}" />
                 <template>
@@ -178,7 +191,7 @@
             </Column>
             <Column
                 hAlign="Right"
-                width="6rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogRecvReadKwLabel}" />
                 <template>
@@ -187,7 +200,7 @@
             </Column>
             <Column
                 hAlign="Right"
-                width="6rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogRecvReadKvaLabel}" />
                 <template>
@@ -196,7 +209,7 @@
             </Column>
             <Column
                 hAlign="Right"
-                width="6rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogRecvReadKvarLabel}" />
                 <template>
@@ -208,7 +221,7 @@
             </Column>
             <Column
                 hAlign="Right"
-                width="6rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogRecvReadKvahLabel}" />
                 <template>
@@ -217,7 +230,7 @@
             </Column>
             <Column
                 hAlign="Right"
-                width="6rem"
+                width="9rem"
             >
                 <m:Label text="{i18n>lhinlogRecvReadKvarhLabel}" />
                 <template>
