@@ -184,7 +184,8 @@ sap.ui.define([
                 var sPlant = oOutlogModel.getProperty("/InitialLoad/Plant");
                 var oPostingDate = oOutlogModel.getProperty("/oPostingDate") + "T00:00:00";
                 var oDocDate = oOutlogModel.getProperty("/oCurrentDate") + "T00:00:00";
-                var sRecipient = oOutlogModel.getProperty("/InitialLoad/Recipient");
+                // var sRecipient = oOutlogModel.getProperty("/InitialLoad/Recipient");
+                var sRecipient = oOutlogModel.getProperty("/Recipient");
                 var aTokensEquipment = oController.getView().byId("idOutlogEquipFrom").getTokens();
                 var sEquipFrom = "";
                 if (aTokensEquipment.length === 0) {
@@ -196,14 +197,14 @@ sap.ui.define([
                     sEquipFrom = sEquipFrom.replace("=", "");
                     aFilter.push(new Filter("SerialNumber", FilterOperator.EQ, sEquipFrom));
                 }
-                else if (aTokensEquipment.length === 2) {
-                    let sEquipFrom1 = aTokensEquipment[0].getText();
-                    sEquipFrom1 = sEquipFrom1.replace("=", "");
-                    let sEquipFrom2 = aTokensEquipment[1].getText();
-                    sEquipFrom2 = sEquipFrom2.replace("=", "");
-                    aFilter.push(new Filter("SerialNumber", FilterOperator.BT, sEquipFrom1, sEquipFrom2));
-                }
-                else if (aTokensEquipment.length > 2) {
+                // else if (aTokensEquipment.length === 2) {
+                //     let sEquipFrom1 = aTokensEquipment[0].getText();
+                //     sEquipFrom1 = sEquipFrom1.replace("=", "");
+                //     let sEquipFrom2 = aTokensEquipment[1].getText();
+                //     sEquipFrom2 = sEquipFrom2.replace("=", "");
+                //     aFilter.push(new Filter("SerialNumber", FilterOperator.BT, sEquipFrom1, sEquipFrom2));
+                // }
+                else if (aTokensEquipment.length >= 2) {
                     for (let i = 0; i <= aTokensEquipment.length - 1; i++) {
                         sEquipFrom = aTokensEquipment[i].getText();
                         sEquipFrom = sEquipFrom.replace("=", "");
@@ -325,11 +326,11 @@ sap.ui.define([
                             //"DelvReadKva": oSelectedList.DelvReadKva,
                             // "AdjDelvReadKva": oSelectedList.AdjDelvReadKva,
                             "DelvKvaFlag": oSelectedList.DelvKvaFlag,
-                            "ReadDate": "\/Date(1713225600000)\/",
+                            //"ReadDate": "\/Date(1713225600000)\/",
                             "FormNo": oSelectedList.FormNo,
                             "SealDate": oSelectedList.SealDate,
                             "SealExpiry": oSelectedList.SealExpiry,
-                            "OperationNo": oSelectedList.OperationNo,
+                            //"OperationNo": oSelectedList.OperationNo,
                             "Message": oSelectedList.Message,
                             "Type": oSelectedList.Type
                         }

@@ -182,8 +182,9 @@
                         type="Number"
                         textAlign="End"
                         value="{OutLogModel>AdjRecvReadKwh}"
-                        editable="{= ${OutLogModel>RecvKwhFlag} === 'X'}"
+                        editable="{= ${OutLogModel>Type} !== 'E'}"
                     />
+                    <!-- editable="{= ${OutLogModel>RecvKwhFlag} === 'X' -->
                 </template>
             </Column>
             <!-- <Column
@@ -327,7 +328,7 @@
                     />
                 </template>
             </Column> -->
-            <Column
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="9rem"
@@ -343,7 +344,7 @@
 						}}"
                     />
                 </template>
-            </Column>
+            </Column> -->
             <Column
                 hAlign="Center"
                 autoResizable="true"
@@ -387,7 +388,7 @@
                     />
                 </template>
             </Column>
-            <Column
+            <!-- <Column
                 hAlign="End"
                 autoResizable="true"
                 width="9rem"
@@ -399,7 +400,7 @@
                         wrapping="false"
                     />
                 </template>
-            </Column>
+            </Column> -->
             <Column
                 hAlign="Start"
                 autoResizable="true"
