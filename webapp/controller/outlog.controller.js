@@ -49,6 +49,7 @@ sap.ui.define([
                 }), "OutLogModel")
             },
             _fnGetInitialload: function () {
+                debugger;
                 oMeterOutlogModel.read("/MOInitialLoadSet", {
                     urlParameters: { '$expand': 'NavStorageLoc' },
                     success: function (oData, oResponse) {
@@ -81,6 +82,7 @@ sap.ui.define([
                 }
             },
             _fnGetDeviceDataSet: function (aFilter) {
+                debugger;
                 oMeterOutlogModel.read("/DeviceDataSet", {
                     filters: aFilter,
                     success: function (oData, oResponse) {
@@ -130,8 +132,8 @@ sap.ui.define([
                 var oDocDtInput = oView.byId('idHeaderDocDate');
                 var oEqipFromInput = oView.byId('idOutlogEquipFrom');
                 var sKeyTargetStorLoc = oTargetStorLocComboBox.getSelectedKey()
-                var oPostingDate = oPostingDtInput.getDateValue();
-                var oDocDate = oDocDtInput.getDateValue();
+                var oPostingDate =oController.formatter.fnDateFormate(oPostingDtInput.getDateValue());
+                var oDocDate = oController.formatter.fnDateFormate(oDocDtInput.getDateValue());
                 // chekc the Equip from is entered or not And Target stor loc
                 if (!sKeyTargetStorLoc) {
                     oTargetStorLocComboBox.setValueState("Error");
@@ -182,8 +184,8 @@ sap.ui.define([
                 var sSourStorLoc = oOutlogModel.getProperty("/InitialLoad/StorageLocation");
                 var sTargStorLoc = oOutlogModel.getProperty("/InitialLoad/ReceivingStorageLocation");
                 var sPlant = oOutlogModel.getProperty("/InitialLoad/Plant");
-                var oPostingDate = oOutlogModel.getProperty("/oPostingDate") + "T00:00:00";
-                var oDocDate = oOutlogModel.getProperty("/oCurrentDate") + "T00:00:00";
+                var oPostingDate = oOutlogModel.getProperty("/oPostingDate");// + "T00:00:00";
+                var oDocDate = oOutlogModel.getProperty("/oCurrentDate");// + "T00:00:00";
                 // var sRecipient = oOutlogModel.getProperty("/InitialLoad/Recipient");
                 var sRecipient = oOutlogModel.getProperty("/Recipient");
                 var aTokensEquipment = oController.getView().byId("idOutlogEquipFrom").getTokens();
