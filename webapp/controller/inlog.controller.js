@@ -263,7 +263,10 @@ sap.ui.define([
                 var aItemDataSet = oModel.getProperty("/ItemDataSet");
                 var sMeterNumber = oModel.getProperty("/MeterNo");
                 var IsValidted = oController._fnValidateHeader(oModel);
+                var wType = oModel.getProperty("/InitialLoad/MeterResults/Type");
+                var wMessage = oModel.getProperty("/InitialLoad/MeterResults/Message");
                 var bNoDuplicateRecord = IsValidted ? oController._fnCheckDuplicateRecord(sMeterNumber) : false;;
+                if (wType === 'W') MessageBox.warning(wMessage);
                 if (IsValidted && bNoDuplicateRecord) {
                     var oItemData = {
                         SerialNumber: oMeterResults.SerialNumber,
@@ -363,7 +366,7 @@ sap.ui.define([
                     bIsValidated = false;
                 }
                 //*********************** Added By Dinesh ***********/
-                if (DelvKvaFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKva") === undefined || oModel.getProperty("/InitialLoad/DelvReadKva") === '')) {
+                if (DelvKvaFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/DelvReadKva") === undefined || oModel.getProperty("/InitialLoad/DelvReadKva") === '')) {
                     DelvReadKvaInput.setValueState("Error");
                     DelvReadKvaInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelkVAErrMsg")); // 
                     bIsValidated = false;
@@ -371,7 +374,7 @@ sap.ui.define([
                     DelvReadKvaInput.setValueState("None");
                     DelvReadKvaInput.setValueStateText("");
                 }
-                if (DelvKvahFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKvah") === undefined || oModel.getProperty("/InitialLoad/DelvReadKvah") === '')) {
+                if (DelvKvahFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/DelvReadKvah") === undefined || oModel.getProperty("/InitialLoad/DelvReadKvah") === '')) {
                     DelvReadKvahInput.setValueState("Error");
                     DelvReadKvahInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelkVAhErrMsg")); // 
                     bIsValidated = false;
@@ -379,7 +382,7 @@ sap.ui.define([
                     DelvReadKvahInput.setValueState("None");
                     DelvReadKvahInput.setValueStateText("");
                 }
-                if (DelvKvarFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKvar") === undefined || oModel.getProperty("/InitialLoad/DelvReadKvar") === '')) {
+                if (DelvKvarFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/DelvReadKvar") === undefined || oModel.getProperty("/InitialLoad/DelvReadKvar") === '')) {
                     DelvReadKvarInput.setValueState("Error");
                     DelvReadKvarInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelKvarErrMsg")); // 
                     bIsValidated = false;
@@ -387,7 +390,7 @@ sap.ui.define([
                     DelvReadKvarInput.setValueState("None");
                     DelvReadKvarInput.setValueStateText("");
                 }
-                if (DelvKvarhFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKvarh") === undefined || oModel.getProperty("/InitialLoad/DelvReadKvarh") === '')) {
+                if (DelvKvarhFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/DelvReadKvarh") === undefined || oModel.getProperty("/InitialLoad/DelvReadKvarh") === '')) {
                     DelvReadKvarhInput.setValueState("Error");
                     DelvReadKvarhInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelkvarhErrMsg")); // 
                     bIsValidated = false;
@@ -395,7 +398,7 @@ sap.ui.define([
                     DelvReadKvarhInput.setValueState("None");
                     DelvReadKvarhInput.setValueStateText("");
                 }
-                if (DelvKwFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKw") === undefined || oModel.getProperty("/InitialLoad/DelvReadKw") === '')) {
+                if (DelvKwFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/DelvReadKw") === undefined || oModel.getProperty("/InitialLoad/DelvReadKw") === '')) {
                     DelvReadKwInput.setValueState("Error");
                     DelvReadKwInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelkwErrMsg")); // 
                     bIsValidated = false;
@@ -403,7 +406,7 @@ sap.ui.define([
                     DelvReadKwInput.setValueState("None");
                     DelvReadKwInput.setValueStateText("");
                 }
-                if (DelvKwhFlag !== '' && (oModel.getProperty("/InitialLoad/DelvReadKwh") === undefined || oModel.getProperty("/InitialLoad/DelvReadKwh") === '')) {
+                if (DelvKwhFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/DelvReadKwh") === undefined || oModel.getProperty("/InitialLoad/DelvReadKwh") === '')) {
                     DelvReadKwhInput.setValueState("Error");
                     DelvReadKwhInput.setValueStateText(oResourceBundle.getText("lhInlogReadDelkwhErrMsg")); // 
                     bIsValidated = false;
@@ -411,7 +414,7 @@ sap.ui.define([
                     DelvReadKwhInput.setValueState("None");
                     DelvReadKwhInput.setValueStateText("");
                 }
-                if (RecvKvaFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKva") === undefined || oModel.getProperty("/InitialLoad/RecvReadKva") === '')) {
+                if (RecvKvaFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/RecvReadKva") === undefined || oModel.getProperty("/InitialLoad/RecvReadKva") === '')) {
                     RecvReadKvaInput.setValueState("Error");
                     RecvReadKvaInput.setValueStateText(oResourceBundle.getText("lhInlogReadReckVAErrMsg")); // 
                     bIsValidated = false;
@@ -419,7 +422,7 @@ sap.ui.define([
                     RecvReadKvaInput.setValueState("None");
                     RecvReadKvaInput.setValueStateText("");
                 }
-                if (RecvKvahFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKvah") === undefined || oModel.getProperty("/InitialLoad/RecvReadKvah") === '')) {
+                if (RecvKvahFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/RecvReadKvah") === undefined || oModel.getProperty("/InitialLoad/RecvReadKvah") === '')) {
                     RecvReadKvahInput.setValueState("Error");
                     RecvReadKvahInput.setValueStateText(oResourceBundle.getText("lhInlogReadReckVAhErrMsg")); // 
                     bIsValidated = false;
@@ -427,7 +430,7 @@ sap.ui.define([
                     RecvReadKvahInput.setValueState("None");
                     RecvReadKvahInput.setValueStateText("");
                 }
-                if (RecvKvarFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKvar") === undefined || oModel.getProperty("/InitialLoad/RecvReadKvar") === '')) {
+                if (RecvKvarFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/RecvReadKvar") === undefined || oModel.getProperty("/InitialLoad/RecvReadKvar") === '')) {
                     RecvReadKvarInput.setValueState("Error");
                     RecvReadKvarInput.setValueStateText(oResourceBundle.getText("lhInlogReadRecKvarErrMsg")); // 
                     bIsValidated = false;
@@ -435,7 +438,7 @@ sap.ui.define([
                     RecvReadKvarInput.setValueState("None");
                     RecvReadKvarInput.setValueStateText("");
                 }
-                if (RecvKvarhFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKvarh") === undefined || oModel.getProperty("/InitialLoad/RecvReadKvarh") === '')) {
+                if (RecvKvarhFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/RecvReadKvarh") === undefined || oModel.getProperty("/InitialLoad/RecvReadKvarh") === '')) {
                     RecvReadKvarhInput.setValueState("Error");
                     RecvReadKvarhInput.setValueStateText(oResourceBundle.getText("lhInlogReadReckvarhErrMsg")); // 
                     bIsValidated = false;
@@ -443,7 +446,7 @@ sap.ui.define([
                     RecvReadKvarhInput.setValueState("None");
                     RecvReadKvarhInput.setValueStateText("");
                 }
-                if (RecvKwFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKw") === undefined || oModel.getProperty("/InitialLoad/RecvReadKw") === '')) {
+                if (RecvKwFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/RecvReadKw") === undefined || oModel.getProperty("/InitialLoad/RecvReadKw") === '')) {
                     RecvReadKwInput.setValueState("Error");
                     RecvReadKwInput.setValueStateText(oResourceBundle.getText("lhInlogReadReckWErrMsg")); // 
                     bIsValidated = false;
@@ -451,7 +454,7 @@ sap.ui.define([
                     RecvReadKwInput.setValueState("None");
                     RecvReadKwInput.setValueStateText("");
                 }
-                if (RecvKwhFlag !== '' && (oModel.getProperty("/InitialLoad/RecvReadKwh") === undefined || oModel.getProperty("/InitialLoad/RecvReadKwh") === '')) {
+                if (RecvKwhFlag !== '' && oMRValidityInput.getSelectedKey() !== 'E' && (oModel.getProperty("/InitialLoad/RecvReadKwh") === undefined || oModel.getProperty("/InitialLoad/RecvReadKwh") === '')) {
                     RecvReadKwhInput.setValueState("Error");
                     RecvReadKwhInput.setValueStateText(oResourceBundle.getText("lhInlogReadReckwhErrMsg")); // 
                     bIsValidated = false;
