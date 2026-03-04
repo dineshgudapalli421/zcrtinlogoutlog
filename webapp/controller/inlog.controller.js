@@ -29,7 +29,7 @@ sap.ui.define([
                 oRouter = UIComponent.getRouter();
                 oResourceBundle = oController.getOwnerComponent().getModel("i18n").getResourceBundle();
                 oMeterInlogModel = oController.getOwnerComponent().getModel("ZDM_METER_INLOG_SRV");
-                var oDeviceModel = oController.getOwnerComponent().getModel("device");
+                //var oDeviceModel = oController.getOwnerComponent().getModel("device");
                 // bIsDesktop = oDeviceModel.getProperty("/system/desktop");
                 var user = sap.ushell.Container.getUser();
                 oReceivedBy = user.getId();

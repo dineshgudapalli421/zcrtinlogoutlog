@@ -132,7 +132,7 @@ sap.ui.define([
                 var oDocDtInput = oView.byId('idHeaderDocDate');
                 var oEqipFromInput = oView.byId('idOutlogEquipFrom');
                 var sKeyTargetStorLoc = oTargetStorLocComboBox.getSelectedKey()
-                var oPostingDate =oController.formatter.fnDateFormate(oPostingDtInput.getDateValue());
+                var oPostingDate = oController.formatter.fnDateFormate(oPostingDtInput.getDateValue());
                 var oDocDate = oController.formatter.fnDateFormate(oDocDtInput.getDateValue());
                 // chekc the Equip from is entered or not And Target stor loc
                 if (!sKeyTargetStorLoc) {
@@ -143,11 +143,17 @@ sap.ui.define([
                     oTargetStorLocComboBox.setValueState("None");
                     oTargetStorLocComboBox.setValueStateText("");
                 }
-                if (!sEquipFrom) {
+                if (!sEquipFrom && aTokensEquipment.length === 0) {
                     oEqipFromInput.setValueState("Error");
                     oEqipFromInput.setValueStateText(oResourceBundle.getText("lhoutlogInvalidEntryMsg"));
                     IsValided = false;
-                } else {
+                } else if (sEquipFrom && aTokensEquipment.length === 0) {
+                    oEqipFromInput.setValue("");
+                    oEqipFromInput.setValueState("Error");
+                    oEqipFromInput.setValueStateText("Please enter the meter number by choosing F4 in the equipment");
+                    IsValided = false;
+                }
+                else {
                     oEqipFromInput.setValueState("None");
                     oEqipFromInput.setValueStateText("");
                 }
